@@ -148,12 +148,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                 DWORD keyinfo_size = 0;
                 wxVERIFY(::CryptDecodeObjectEx(X509_ASN_ENCODING, X509_PUBLIC_KEY_INFO, (const BYTE*)::LockResource(res_handle), ::SizeofResource(NULL, res), CRYPT_DECODE_ALLOC_FLAG, NULL, &keyinfo_data, &keyinfo_size));
 
-                BYTE *key_data = NULL;
-                DWORD key_size = 0;
-                wxVERIFY(::CryptDecodeObjectEx(X509_ASN_ENCODING, RSA_CSP_PUBLICKEYBLOB, (const BYTE*)keyinfo_data->PublicKey.pbData, keyinfo_data->PublicKey.cbData, CRYPT_DECODE_ALLOC_FLAG, NULL, &key_data, &key_size));
-
-                wxVERIFY(::CryptImportKey(cp, key_data, key_size, NULL, 0, &ck));
-                ::LocalFree(key_data);
+                wxVERIFY(::CryptImportPublicKeyInfo(cp, X509_ASN_ENCODING, keyinfo_data, &ck));
                 ::LocalFree(keyinfo_data);
             }
 
