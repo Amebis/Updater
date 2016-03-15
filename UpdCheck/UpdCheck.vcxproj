@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="UpdCheck.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="UpdCheck.rc" />

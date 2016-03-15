@@ -19,25 +19,7 @@
 
 #pragma once
 
-//
-// Product version as a single DWORD
-// Note: Used for version comparison within C/C++ code.
-//
-#define UPDATER_VERSION         0x01000000
+#define IDR_KEY_PUBLIC  1
 
-//
-// Product version by components
-// Note: Resource Compiler has limited preprocessing capability,
-// thus we need to specify major, minor and other version components
-// separately.
-//
-#define UPDATER_VERSION_MAJ     1
-#define UPDATER_VERSION_MIN     0
-#define UPDATER_VERSION_REV     0
-#define UPDATER_VERSION_BUILD   0
-
-//
-// Human readable product version and build year for UI
-//
-#define UPDATER_VERSION_STR     "2.0-alpha"
-#define UPDATER_BUILD_YEAR_STR   "2016"
+#if !defined(RC_INVOKED) && !defined(MIDL_PASS)
+#endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)

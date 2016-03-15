@@ -19,18 +19,7 @@
 
 #pragma once
 
-#include "UpdMkDesc.h"
-#include "../include/Updater.h"
+#define IDR_KEY_PRIVATE 1
 
-#include <wx/app.h>
-#include <wx/cmdline.h>
-
-#include <wxex/common.h>
-
-#include <stdex/idrec.h>
-
-#include <algorithm>
-#include <fstream>
-#include <vector>
-
-#include <tchar.h>
+#if !defined(RC_INVOKED) && !defined(MIDL_PASS)
+#endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)

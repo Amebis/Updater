@@ -30,6 +30,9 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UpdCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="UpdCheck.rc">

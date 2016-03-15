@@ -9,6 +9,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\lib\wxExtend\include;..\..\lib\stdex\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

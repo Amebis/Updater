@@ -19,8 +19,13 @@
 
 #pragma once
 
+#include "UpdCheck.h"
+#include "../include/Updater.h"
+
 #include <wx/app.h>
 
 #include <wxex/common.h>
 
 #include <stdex/idrec.h>
+
+#include <fstream>
