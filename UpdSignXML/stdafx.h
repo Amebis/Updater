@@ -19,18 +19,16 @@
 
 #pragma once
 
-#include "UpdMkDesc.h"
+#include "UpdSignXML.h"
 #include "../include/Updater.h"
 
 #include <wx/app.h>
+#include <wx/base64.h>
 #include <wx/cmdline.h>
+#include <wx/xml/xml.h>
 
 #include <wxex/common.h>
-
-#include <stdex/idrec.h>
+#include <wxex/xml.h>
 
 #include <algorithm>
-#include <fstream>
 #include <vector>
-
-#include <tchar.h>

@@ -30,12 +30,12 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UpdMkDesc.h">
+    <ClInclude Include="UpdSignXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="UpdMkDesc.rc">
+    <ResourceCompile Include="UpdSignXML.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
