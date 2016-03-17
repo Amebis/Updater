@@ -70,17 +70,23 @@ int _tmain(int argc, _TCHAR *argv[])
 
     wxXmlNode *document = doc.GetDocumentNode();
 
-    // Examine prologue if the document is already signed.
-    for (wxXmlNode *prolog = document->GetChildren(); prolog; prolog = prolog->GetNext()) {
+    // Examine prologue if the document is already signed and remove all signatures.
+    for (wxXmlNode *prolog = document->GetChildren(); prolog;) {
         if (prolog->GetType() == wxXML_COMMENT_NODE) {
             wxString content = prolog->GetContent();
             if (content.length() >= _countof(wxS(UPDATER_SIGNATURE_MARK)) - 1 &&
                 memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1)) == 0)
             {
                 // Previous signature found. Remove it.
-                document->RemoveChild(prolog);
+                wxXmlNode *signature = prolog;
+                prolog = prolog->GetNext();
+                document->RemoveChild(signature);
+                wxDELETE(signature);
+                continue;
             }
         }
+
+        prolog = prolog->GetNext();
     }
 
     // Create cryptographic context.
