@@ -51,10 +51,9 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
     wxDELETE(httpStream);
     http.Close();
 
-    // Find the signature first.
+    // Find the (first) signature.
     wxXmlNode *document = doc.GetDocumentNode();
     std::vector<BYTE> sig;
-
     for (wxXmlNode *prolog = document->GetChildren(); prolog; prolog = prolog->GetNext()) {
         if (prolog->GetType() == wxXML_COMMENT_NODE) {
             wxString content = prolog->GetContent();
@@ -62,17 +61,19 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
             if (content_len >= _countof(wxS(UPDATER_SIGNATURE_MARK)) - 1 &&
                 memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1)) == 0)
             {
+                // Read the signature.
                 size_t signature_len = content_len - (_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1);
                 sig.resize(wxBase64DecodedSize(signature_len));
                 size_t res = wxBase64Decode(sig.data(), sig.capacity(), content.Right(signature_len), wxBase64DecodeMode_SkipWS);
-                if (res != wxCONV_FAILED)
+                if (res != wxCONV_FAILED) {
                     sig.resize(res);
-                else
-                    sig.clear();
 
-                // Remove signature for check.
-                document->RemoveChild(prolog);
-                break;
+                    // Remove the signature as it is not a part of the validation check.
+                    document->RemoveChild(prolog);
+                    wxDELETE(prolog);
+                    break;
+                } else
+                    sig.clear();
             }
         }
     }
