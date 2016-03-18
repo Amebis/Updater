@@ -28,6 +28,7 @@
 #include <wx/xml/xml.h>
 
 #include <wxex/common.h>
+#include <wxex/crypto.h>
 #include <wxex/xml.h>
 
 #include <algorithm>

@@ -27,10 +27,12 @@
 #include <wx/app.h>
 #include <wx/base64.h>
 #include <wx/datetime.h>
+#include <wx/filename.h>
 #include <wx/protocol/http.h>
 #include <wx/xml/xml.h>
 
 #include <wxex/common.h>
+#include <wxex/crypto.h>
 #include <wxex/xml.h>
 
 #include <algorithm>
