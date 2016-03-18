@@ -73,10 +73,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
 
     // Create RSA AES cryptographic context.
     wxCryptoSessionRSAAES cs;
-    if (!cs.IsOk()) {
-        wxLogError(wxT("Failed to create cryptographics session."));
+    if (!cs.IsOk())
         return -1;
-    }
 
     // Import public key.
     wxCryptoKey ck;
@@ -86,10 +84,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         HGLOBAL res_handle = ::LoadResource(NULL, res);
         wxASSERT_MSG(res_handle, wxT("loading resource failed"));
 
-        if (!ck.ImportPublic(cs, ::LockResource(res_handle), ::SizeofResource(NULL, res))) {
-            wxLogError(wxT("Failed to import public key."));
+        if (!ck.ImportPublic(cs, ::LockResource(res_handle), ::SizeofResource(NULL, res)))
             return -1;
-        }
     }
 
     for (const wxChar *server = wxT(UPDATER_HTTP_SERVER); server[0]; server += wcslen(server) + 1) {
@@ -156,10 +152,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
 
         // Hash the content.
         wxCryptoHashSHA1 ch(cs);
-        if (!wxXmlHashNode(ch, document)) {
-            wxLogWarning(wxT("Failed to hash the repository catalogue."));
+        if (!wxXmlHashNode(ch, document))
             continue;
-        }
 
         // We have the hash, we have the signature, we have the public key. Now verify.
         if (!wxCryptoVerifySignature(ch, sig.data(), sig.size(), ck)) {
