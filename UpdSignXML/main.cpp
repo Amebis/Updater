@@ -29,10 +29,8 @@ int _tmain(int argc, _TCHAR *argv[])
 
     // Initialize wxWidgets.
     wxInitializer initializer;
-    if (!initializer.IsOk()) {
-        _ftprintf(stderr, wxT("Failed to initialize the wxWidgets library, aborting.\n"));
+    if (!initializer.IsOk())
         return -1;
-    }
 
     // Parse command line.
     static const wxCmdLineEntryDesc cmdLineDesc[] =
@@ -61,10 +59,8 @@ int _tmain(int argc, _TCHAR *argv[])
     // Load input XML document.
     const wxString& filenameIn = parser.GetParam(0);
     wxXmlDocument doc;
-    if (!doc.Load(filenameIn, "UTF-8", wxXMLDOC_KEEP_WHITESPACE_NODES)) {
-        _ftprintf(stderr, wxT("%s: error USX0001: Error opening input file.\n"), filenameIn.fn_str());
+    if (!doc.Load(filenameIn, "UTF-8", wxXMLDOC_KEEP_WHITESPACE_NODES))
         return 1;
-    }
 
     // Examine prologue if the document is already signed and remove all signatures found.
     wxXmlNode *document = doc.GetDocumentNode();
@@ -88,10 +84,8 @@ int _tmain(int argc, _TCHAR *argv[])
 
     // Create RSA AES cryptographic session.
     wxCryptoSessionRSAAES cs;
-    if (!cs.IsOk()) {
-        _ftprintf(stderr, wxT("Failed to create cryptographics session.\n"));
+    if (!cs.IsOk())
         return -1;
-    }
 
     // Import the private key into the session from resources.
     {
@@ -101,25 +95,19 @@ int _tmain(int argc, _TCHAR *argv[])
         wxASSERT_MSG(res_handle, wxT("loading resource failed"));
 
         wxCryptoKey ck;
-        if (!ck.ImportPrivate(cs, ::LockResource(res_handle), ::SizeofResource(NULL, res))) {
-            _ftprintf(stderr, wxT("Failed to import private key.\n"));
+        if (!ck.ImportPrivate(cs, ::LockResource(res_handle), ::SizeofResource(NULL, res)))
             return -1;
-        }
     }
 
     // Hash the XML content.
     wxCryptoHashSHA1 ch(cs);
-    if (!wxXmlHashNode(ch, document)) {
-        _ftprintf(stderr, wxT("%s: error USX0002: Error hashing input file.\n"), filenameIn.fn_str());
+    if (!wxXmlHashNode(ch, document))
         return 2;
-    }
 
     // Sign the hash.
     wxMemoryBuffer sig;
-    if (!ch.Sign(sig)) {
-        _ftprintf(stderr, wxT("%s: error USX0003: Error signing hash.\n"), filenameIn.fn_str());
+    if (!ch.Sign(sig))
         return 3;
-    }
 
     // Encode signature (Base64) and append to the document prolog.
     wxString signature;
@@ -130,7 +118,7 @@ int _tmain(int argc, _TCHAR *argv[])
     // Write output XML document.
     const wxString& filenameOut = parser.GetParam(1);
     if (!doc.Save(filenameOut, wxXML_NO_INDENTATION)) {
-        _ftprintf(stderr, wxT("%s: error USX0004: Error writing output file.\n"), filenameOut.fn_str());
+        wxLogError(wxT("%s: error USX0004: Error writing output file.\n"), filenameOut.fn_str());
 
         // Remove the output file (if exists).
         wxRemoveFile(filenameOut);
