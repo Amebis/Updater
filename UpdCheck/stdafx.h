@@ -26,6 +26,7 @@
 
 #include <wx/app.h>
 #include <wx/base64.h>
+#include <wx/config.h>
 #include <wx/datetime.h>
 #include <wx/filename.h>
 #include <wx/protocol/http.h>

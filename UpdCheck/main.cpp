@@ -29,6 +29,11 @@ protected:
     FILE *m_pLogFile;
 
 public:
+    wxConfig m_config;
+    wxString m_path;
+    wxLocale m_locale;
+
+public:
     wxUpdCheckInitializer();
     virtual ~wxUpdCheckInitializer();
 };
@@ -36,13 +41,24 @@ public:
 
 wxUpdCheckInitializer::wxUpdCheckInitializer() :
     m_pLogFile(NULL),
+    m_config(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR)),
     wxInitializer()
 {
     if (wxInitializer::IsOk()) {
-        wxString str(wxFileName::GetTempDir());
-        str += wxFILE_SEP_PATH;
-        str += wxT(UPDATER_LOG_FILE);
-        m_pLogFile = fopen(str, "w+");
+        // Set desired locale.
+        wxLanguage language = (wxLanguage)m_config.Read(wxT("Language"), wxLANGUAGE_DEFAULT);
+        if (wxLocale::IsAvailable(language))
+            wxVERIFY(m_locale.Init(language));
+
+        if (!m_config.Read(wxT("CachePath"), &m_path))
+            m_path = wxFileName::GetTempDir();
+        if (!wxEndsWithPathSeparator(m_path))
+            m_path += wxFILE_SEP_PATH;
+
+        if (!wxDirExists(m_path))
+            wxMkdir(m_path);
+
+        m_pLogFile = fopen(m_path + wxT(UPDATER_LOG_FILE), "w+");
         if (m_pLogFile)
             delete wxLog::SetActiveTarget(new wxLogStderr(m_pLogFile));
     } else
@@ -88,6 +104,9 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
             return -1;
     }
 
+    long val;
+    wxDateTime last_checked = initializer.m_config.Read(wxT("LastChecked"), &val) ? wxDateTime((time_t)val) : wxInvalidDateTime;
+
     for (const wxChar *server = wxT(UPDATER_HTTP_SERVER); server[0]; server += wcslen(server) + 1) {
         wxXmlDocument doc;
 
@@ -95,14 +114,19 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
 
         // Load repository database.
         wxHTTP http;
-        //wxDateTime timestamp_last_checked;
-        //http.SetHeader(wxS("If-Modified-Since"), timestamp_last_checked.Format(wxS("%a, %d %b %y %T %z")));
+        if (last_checked.IsValid())
+            http.SetHeader(wxS("If-Modified-Since"), last_checked.Format(wxS("%a, %d %b %Y %H:%M:%S %z")));
         if (!http.Connect(server, UPDATER_HTTP_PORT)) {
             wxLogWarning(wxT("Error resolving %s server name."), server);
             continue;
         }
         wxInputStream *httpStream = http.GetInputStream(wxS(UPDATER_HTTP_PATH));
         if (!httpStream) {
+            if (http.GetResponse() == 304) {
+                wxLogStatus(wxT("Repository did not change since the last time..."));
+                return 0;
+            }
+
             wxLogWarning(wxT("Error response received from server %s (port %u) requesting %s."), server, UPDATER_HTTP_PORT, UPDATER_HTTP_PATH);
             continue;
         }
@@ -163,6 +187,110 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
 
         // The signature is correct. Now parse the file.
         wxLogStatus(wxT("Parsing repository catalogue..."));
+
+        // Start processing the XML file.
+        wxXmlNode *elRoot = doc.GetRoot();
+        const wxString &nameRoot = elRoot->GetName();
+        if (nameRoot != wxT("Packages")) {
+            wxLogWarning(wxT("Invalid root element in repository catalogue (actual: %s, expected %s)."), nameRoot.c_str(), wxT("Packages"));
+            continue;
+        }
+
+        // Iterate over packages.
+        wxUint32 versionMax = 0;
+        wxString versionStrMax;
+        wxString urlMax;
+        std::vector<BYTE> sigMax;
+        for (wxXmlNode *elPackage = elRoot->GetChildren(); elPackage; elPackage = elPackage->GetNext()) {
+            if (elPackage->GetType() == wxXML_ELEMENT_NODE && elPackage->GetName() == wxT("Package")) {
+                // Get package version.
+                wxUint32 version = 0;
+                wxString versionStr;
+                for (wxXmlNode *elVersion = elPackage->GetChildren(); elVersion; elVersion = elVersion->GetNext()) {
+                    if (elVersion->GetType() == wxXML_ELEMENT_NODE && elVersion->GetName() == wxT("Version")) {
+                        for (wxXmlNode *elVersionNote = elVersion->GetChildren(); elVersionNote; elVersionNote = elVersionNote->GetNext()) {
+                            if (elVersionNote->GetType() == wxXML_ELEMENT_NODE) {
+                                const wxString &name = elVersionNote->GetName();
+                                if (name == wxT("hex"))
+                                    version = _tcstoul(elVersionNote->GetNodeContent(), NULL, 16);
+                                else if (name == wxT("desc"))
+                                    versionStr = elVersionNote->GetNodeContent();
+                            }
+                        }
+                    }
+                }
+                if (version <= UPDATER_PRODUCT_VERSION || version < versionMax) {
+                    // This package is older than currently installed product or the superseeded package found.
+                    continue;
+                }
+
+                // Get package download URL for our platform and language.
+                wxString platformId;
+#if defined(__WINDOWS__)
+                platformId += wxT("win");
+#endif
+#if defined(_WIN64)
+                platformId += wxT("-amd64");
+#else
+                platformId += wxT("-x86");
+#endif
+                wxString languageId(initializer.m_locale.GetCanonicalName());
+                wxString url;
+                std::vector<BYTE> sig;
+                for (wxXmlNode *elDownloads = elPackage->GetChildren(); elDownloads; elDownloads = elDownloads->GetNext()) {
+                    if (elDownloads->GetType() == wxXML_ELEMENT_NODE && elDownloads->GetName() == wxT("Downloads")) {
+                        for (wxXmlNode *elPlatform = elDownloads->GetChildren(); elPlatform; elPlatform = elPlatform->GetNext()) {
+                            if (elPlatform->GetType() == wxXML_ELEMENT_NODE) {
+                                if (elPlatform->GetName() == wxT("Platform") && elPlatform->GetAttribute(wxT("id")) == platformId) {
+                                    // Get language.
+                                    for (wxXmlNode *elLocale = elPlatform->GetChildren(); elLocale; elLocale = elLocale->GetNext()) {
+                                        if (elLocale->GetType() == wxXML_ELEMENT_NODE && elLocale->GetName() == wxT("Localization") && elLocale->GetAttribute(wxT("lang")) == languageId) {
+                                            for (wxXmlNode *elLocaleNote = elLocale->GetChildren(); elLocaleNote; elLocaleNote = elLocaleNote->GetNext()) {
+                                                if (elLocaleNote->GetType() == wxXML_ELEMENT_NODE) {
+                                                    const wxString &name = elLocaleNote->GetName();
+                                                    if (name == wxT("url"))
+                                                        url = elLocaleNote->GetNodeContent();
+                                                    else if (name == wxT("signature")) {
+                                                        // Read the signature.
+                                                        wxString content(elLocaleNote->GetNodeContent());
+                                                        sig.resize(wxBase64DecodedSize(content.length()));
+                                                        size_t res = wxBase64Decode(sig.data(), sig.capacity(), content, wxBase64DecodeMode_SkipWS);
+                                                        if (res != wxCONV_FAILED)
+                                                            sig.resize(res);
+                                                        else
+                                                            sig.clear();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (url.IsEmpty() || sig.empty()) {
+                    // This package is for different architecture and/or language.
+                    // ... or missing URL and/or signature.
+                    continue;
+                }
+
+                versionMax = version;
+                versionStrMax = versionStr;
+                urlMax = url;
+                sigMax = sig;
+            }
+        }
+
+        if (versionMax) {
+            wxLogMessage(wxT("Update package found (version: %s, URL: %s)."), versionStrMax.c_str(), urlMax.c_str());
+
+
+        } else
+            wxLogStatus(wxT("Update check complete. Your package is up to date."));
+
+        // Save the last check date.
+        initializer.m_config.Write(wxT("LastChecked"), (long)wxDateTime::GetTimeNow());
 
         return 0;
     }
