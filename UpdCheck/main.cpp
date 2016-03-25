@@ -50,8 +50,7 @@ wxUpdCheckInitializer::wxUpdCheckInitializer() :
         if (wxLocale::IsAvailable(language))
             wxVERIFY(m_locale.Init(language));
 
-        if (!m_config.Read(wxT("CachePath"), &m_path))
-            m_path = wxFileName::GetTempDir();
+        m_path = wxFileName::GetTempDir();
         if (!wxEndsWithPathSeparator(m_path))
             m_path += wxFILE_SEP_PATH;
 
