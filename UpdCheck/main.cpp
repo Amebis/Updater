@@ -273,7 +273,113 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         if (versionMax) {
             wxLogMessage(wxT("Update package found (version: %s)."), versionStrMax.c_str());
 
+            wxString fileName(initializer.m_path);
+            fileName += wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-");
+            fileName += versionStrMax;
+            fileName += wxT(".msi");
 
+            bool isLocal = false;
+
+            if (wxFileExists(fileName)) {
+                // The update package file already exists. Do the integrity check.
+                std::ifstream file((LPCTSTR)fileName, std::ios_base::in | std::ios_base::binary);
+                if (file.is_open()) {
+                    // Calculate file hash.
+                    wxCryptoHashSHA1 ch(cs);
+                    wxMemoryBuffer buf(4*1024);
+                    char *data = (char*)buf.GetData();
+                    size_t nBlock = buf.GetBufSize();
+                    do {
+                        file.read(data, nBlock);
+                        ch.Hash(data, file.gcount());
+                    } while (file.good());
+                    ch.GetValue(buf);
+
+                    if (buf.GetDataLen() == hashMax.size() &&
+                        memcmp(buf.GetData(), hashMax.data(), buf.GetDataLen()) == 0)
+                    {
+                        // Update package file exists and its hash is correct.
+                        wxLogStatus(wxT("Update package file already downloaded."));
+                        isLocal = true;
+                    }
+                }
+            }
+
+            if (!isLocal) {
+                std::ofstream file((LPCTSTR)fileName, std::ios_base::out | std::ios_base::trunc | std::ios_base::binary);
+                if (!file.is_open()) {
+                    wxLogError(wxT("Can not open/create %s file for writing."), fileName.c_str());
+                    goto quit; // This condition has no chance to succeed with the next download server. Quit.
+                }
+
+                // Download update package file.
+                for (std::vector<wxString>::const_iterator i = urlsMax.cbegin(), i_end = urlsMax.end(); i != i_end; ++i) {
+                    wxURL url(*i);
+                    if (!url.IsOk())
+                        continue;
+
+                    wxLogStatus(wxT("Downloading update package from %s..."), i->c_str());
+                    wxInputStream *stream = url.GetInputStream();
+                    if (!stream) {
+                        wxLogWarning(wxT("Error response received."));
+                        continue;
+                    }
+
+                    // Save update package to file, and calculate hash.
+                    wxCryptoHashSHA1 ch(cs);
+                    wxMemoryBuffer buf(4*1024);
+                    char *data = (char*)buf.GetData();
+                    size_t nBlock = buf.GetBufSize();
+                    do {
+                        stream->Read(data, nBlock);
+                        size_t nRead = stream->LastRead();
+                        if (file.fail()) {
+                            wxLogError(wxT("Can not write to %s file."), fileName.c_str());
+                            goto quit; // This condition has no chance to succeed with the next download server. Quit.
+                        }
+                        file.write(data, nRead);
+                        ch.Hash(data, nRead);
+                    } while (stream->IsOk());
+                    ch.GetValue(buf);
+
+                    if (buf.GetDataLen() == hashMax.size() &&
+                        memcmp(buf.GetData(), hashMax.data(), buf.GetDataLen()) == 0)
+                    {
+                        // Update package file exists and its hash is correct.
+                        isLocal = true;
+                        break;
+                    } else
+                        wxLogWarning(wxT("Update package file corrupt."));
+                }
+            }
+
+            if (isLocal) {
+                wxLogStatus(wxT("Launching update..."));
+
+                // Headless Install
+                wxString param("/qn");
+
+                // Package
+                param += wxT(" /i \"");
+                param += fileName;
+                param += wxT("\"");
+
+                // Logging
+                wxString fileNameLog(initializer.m_path + wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-msiexec.log"));
+
+                param += wxT(" /l* \"");
+                param += fileNameLog;
+                param += wxT("\"");
+
+                if ((int)::ShellExecute(NULL, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL) > 32) {
+                    wxLogStatus(wxT("For further information, see %s file."), fileNameLog.c_str());
+                    break;
+                } else {
+                    wxLogError(wxT("msiexec.exe launch failed."));
+                    goto quit; // This condition has no chance to succeed with the next download server. Quit.
+                }
+            } else
+                wxLogWarning(wxT("Update package file download failed."));
         } else
             wxLogStatus(wxT("Update check complete. Your package is up to date."));
 
@@ -283,6 +389,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         return 0;
     }
 
+quit:
     // No success.
     return 1;
 }

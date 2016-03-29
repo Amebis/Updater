@@ -30,6 +30,7 @@
 #include <wx/datetime.h>
 #include <wx/filename.h>
 #include <wx/protocol/http.h>
+#include <wx/url.h>
 #include <wx/xml/xml.h>
 
 #include <wxex/common.h>
