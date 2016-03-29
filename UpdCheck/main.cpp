@@ -365,7 +365,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                 param += wxT("\"");
 
                 // Logging
-                wxString fileNameLog(initializer.m_path + wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-msiexec.log"));
+                wxString fileNameLog(initializer.m_path);
+                fileNameLog += wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-msiexec.log");
 
                 param += wxT(" /l* \"");
                 param += fileNameLog;
@@ -380,8 +381,17 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                 }
             } else
                 wxLogWarning(wxT("Update package file download failed."));
-        } else
+        } else {
             wxLogStatus(wxT("Update check complete. Your package is up to date."));
+
+            // Clean-up the downloaded package files to free space.
+            wxDir dir(initializer.m_path);
+            if (dir.IsOpened()) {
+                wxString filename;
+                for (bool cont = dir.GetFirst(&filename, wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-*.msi"), wxDIR_FILES | wxDIR_HIDDEN); cont; cont = dir.GetNext(&filename))
+                    wxRemoveFile(initializer.m_path + filename);
+            }
+        }
 
         // Save the last check date.
         initializer.m_config.Write(wxT("LastChecked"), (long)wxDateTime::GetTimeNow());
