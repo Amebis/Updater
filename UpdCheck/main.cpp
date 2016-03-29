@@ -242,11 +242,11 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                                                         // Read the hash.
                                                         wxString content(elLocaleNote->GetNodeContent());
                                                         hash.resize(wxHexDecodedSize(content.length()));
-                                                        size_t res = wxHexDecode(sig.data(), sig.capacity(), content, wxHexDecodeMode_SkipWS);
+                                                        size_t res = wxHexDecode(hash.data(), hash.capacity(), content, wxHexDecodeMode_SkipWS);
                                                         if (res != wxCONV_FAILED)
-                                                            sig.resize(res);
+                                                            hash.resize(res);
                                                         else
-                                                            sig.clear();
+                                                            hash.clear();
                                                     }
                                                 }
                                             }
