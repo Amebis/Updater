@@ -26,7 +26,7 @@
 class wxUpdCheckInitializer : public wxInitializer
 {
 protected:
-    FILE *m_pLogFile;
+    std::ofstream m_log;
 
 public:
     wxConfig m_config;
@@ -35,12 +35,10 @@ public:
 
 public:
     wxUpdCheckInitializer();
-    virtual ~wxUpdCheckInitializer();
 };
 
 
 wxUpdCheckInitializer::wxUpdCheckInitializer() :
-    m_pLogFile(NULL),
     m_config(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR)),
     wxInitializer()
 {
@@ -57,19 +55,9 @@ wxUpdCheckInitializer::wxUpdCheckInitializer() :
         if (!wxDirExists(m_path))
             wxMkdir(m_path);
 
-        m_pLogFile = fopen(m_path + wxT(UPDATER_LOG_FILE), "w+");
-        if (m_pLogFile)
-            delete wxLog::SetActiveTarget(new wxLogStderr(m_pLogFile));
-    } else
-        m_pLogFile = NULL;
-}
-
-
-wxUpdCheckInitializer::~wxUpdCheckInitializer()
-{
-    if (m_pLogFile != NULL) {
-        delete wxLog::SetActiveTarget(NULL);
-        fclose(m_pLogFile);
+        m_log.open((LPCTSTR)(m_path + wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT(".log")), std::ios_base::out | std::ios_base::trunc);
+        if (m_log.is_open())
+            delete wxLog::SetActiveTarget(new wxLogStream(&m_log));
     }
 }
 
