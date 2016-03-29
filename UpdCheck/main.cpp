@@ -113,6 +113,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
 
         // Load repository database.
         wxHTTP http;
+        http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(UPDATER_VERSION_STR));
         if (last_checked.IsValid())
             http.SetHeader(wxS("If-Modified-Since"), last_checked.Format(wxS("%a, %d %b %Y %H:%M:%S %z")));
         if (!http.Connect(server, UPDATER_HTTP_PORT)) {
