@@ -34,6 +34,7 @@
 
 #include <wxex/common.h>
 #include <wxex/crypto.h>
+#include <wxex/hex.h>
 #include <wxex/xml.h>
 
 #include <algorithm>

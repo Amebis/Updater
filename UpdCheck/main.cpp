@@ -199,8 +199,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         // Iterate over packages.
         wxUint32 versionMax = 0;
         wxString versionStrMax;
-        wxString urlMax;
-        std::vector<BYTE> sigMax;
+        std::vector<wxString> urlsMax;
+        std::vector<BYTE> hashMax;
         for (wxXmlNode *elPackage = elRoot->GetChildren(); elPackage; elPackage = elPackage->GetNext()) {
             if (elPackage->GetType() == wxXML_ELEMENT_NODE && elPackage->GetName() == wxT("Package")) {
                 // Get package version.
@@ -235,8 +235,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                 platformId += wxT("-x86");
 #endif
                 wxString languageId(initializer.m_locale.GetCanonicalName());
-                wxString url;
-                std::vector<BYTE> sig;
+                std::vector<wxString> urls;
+                std::vector<BYTE> hash;
                 for (wxXmlNode *elDownloads = elPackage->GetChildren(); elDownloads; elDownloads = elDownloads->GetNext()) {
                     if (elDownloads->GetType() == wxXML_ELEMENT_NODE && elDownloads->GetName() == wxT("Downloads")) {
                         for (wxXmlNode *elPlatform = elDownloads->GetChildren(); elPlatform; elPlatform = elPlatform->GetNext()) {
@@ -249,12 +249,12 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                                                 if (elLocaleNote->GetType() == wxXML_ELEMENT_NODE) {
                                                     const wxString &name = elLocaleNote->GetName();
                                                     if (name == wxT("url"))
-                                                        url = elLocaleNote->GetNodeContent();
-                                                    else if (name == wxT("signature")) {
-                                                        // Read the signature.
+                                                        urls.push_back(elLocaleNote->GetNodeContent());
+                                                    else if (name == wxT("hash")) {
+                                                        // Read the hash.
                                                         wxString content(elLocaleNote->GetNodeContent());
-                                                        sig.resize(wxBase64DecodedSize(content.length()));
-                                                        size_t res = wxBase64Decode(sig.data(), sig.capacity(), content, wxBase64DecodeMode_SkipWS);
+                                                        hash.resize(wxHexDecodedSize(content.length()));
+                                                        size_t res = wxHexDecode(sig.data(), sig.capacity(), content, wxHexDecodeMode_SkipWS);
                                                         if (res != wxCONV_FAILED)
                                                             sig.resize(res);
                                                         else
@@ -269,21 +269,21 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
                         }
                     }
                 }
-                if (url.IsEmpty() || sig.empty()) {
+                if (urls.empty() || hash.empty()) {
                     // This package is for different architecture and/or language.
-                    // ... or missing URL and/or signature.
+                    // ... or missing URL and/or hash.
                     continue;
                 }
 
                 versionMax = version;
                 versionStrMax = versionStr;
-                urlMax = url;
-                sigMax = sig;
+                urlsMax = urls;
+                hashMax = hash;
             }
         }
 
         if (versionMax) {
-            wxLogMessage(wxT("Update package found (version: %s, URL: %s)."), versionStrMax.c_str(), urlMax.c_str());
+            wxLogMessage(wxT("Update package found (version: %s)."), versionStrMax.c_str());
 
 
         } else
