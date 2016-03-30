@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: UpdCheck\n"
-"POT-Creation-Date: 2016-03-15 10:56+0100\n"
-"PO-Revision-Date: 2016-03-15 10:57+0100\n"
+"POT-Creation-Date: 2016-03-30 11:36+0200\n"
+"PO-Revision-Date: 2016-03-30 11:37+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
 "Language: sl_SI\n"
@@ -17,14 +17,51 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: main.cpp:40
-msgid "Show this help message"
-msgstr "Pokaži to sporočilo pomoči"
+#: MSIBuild/En.Win32.Debug.ScheduledTask-2.idtx:4
+#: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:4
+#: MSIBuild/En.x64.Debug.ScheduledTask-2.idtx:4
+#: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:4
+msgid "[SimpleProductName] Update"
+msgstr "Posodabljanje [SimpleProductName]"
 
-#: main.cpp:41
-msgid "input file"
-msgstr "vhodna datoteka"
+# Windows charset for this language (decimal)
+#: MSIBuild/En.Win32.Debug.Feature-2.idtx:3
+#: MSIBuild/En.Win32.Debug.ScheduledTask-2.idtx:3
+#: MSIBuild/En.Win32.Release.Feature-2.idtx:3
+#: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:3
+#: MSIBuild/En.x64.Debug.Feature-2.idtx:3
+#: MSIBuild/En.x64.Debug.ScheduledTask-2.idtx:3
+#: MSIBuild/En.x64.Release.Feature-2.idtx:3
+#: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:3
+msgid "1252"
+msgstr "1250"
 
-#: main.cpp:42
-msgid "output file"
-msgstr "izhodna datoteka"
+#: MSIBuild/En.Win32.Debug.Feature-2.idtx:4
+#: MSIBuild/En.Win32.Release.Feature-2.idtx:4
+#: MSIBuild/En.x64.Debug.Feature-2.idtx:4
+#: MSIBuild/En.x64.Release.Feature-2.idtx:4
+msgid "Automatic Updating"
+msgstr "Samodejno posodabljanje"
+
+#: MSIBuild/En.Win32.Debug.ScheduledTask-2.idtx:4
+#: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:4
+#: MSIBuild/En.x64.Debug.ScheduledTask-2.idtx:4
+#: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:4
+msgid "Regularly checks for program updates, downloads, and installs them"
+msgstr "Redno preverja za posodobitve programa, prenese in jih namesti"
+
+#: MSIBuild/En.Win32.Debug.Feature-2.idtx:4
+#: MSIBuild/En.Win32.Release.Feature-2.idtx:4
+#: MSIBuild/En.x64.Debug.Feature-2.idtx:4
+#: MSIBuild/En.x64.Release.Feature-2.idtx:4
+msgid "Task for background product updating"
+msgstr "Opravilo za samodejno posodabljanje izdelka"
+
+#~ msgid "Show this help message"
+#~ msgstr "Pokaži to sporočilo pomoči"
+
+#~ msgid "input file"
+#~ msgstr "vhodna datoteka"
+
+#~ msgid "output file"
+#~ msgstr "izhodna datoteka"
