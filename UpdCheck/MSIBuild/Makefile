@@ -34,10 +34,10 @@ Component	ComponentId	Directory_	Attributes	Condition	KeyPath
 s$(MSIBUILD_LENGTH_ID)	S38	s$(MSIBUILD_LENGTH_ID)	i2	S255	S$(MSIBUILD_LENGTH_ID)
 Component	Component
 !IF "$(PLAT)" == "Win32"
-compUpdCheck.exe.Win32	{0E56A84C-1567-4030-B5C8-2FF998E9F7E3}	$(UPDATER_BINDIR)	0		fileUpdCheck.exe.Win32
+compUpdCheck.exe.Win32	{0E56A84C-1567-4030-B5C8-2FF998E9F7E3}	$(UPDATER_BIN_DIR)	0		fileUpdCheck.exe.Win32
 !ENDIF
 !IF "$(PLAT)" == "x64"
-compUpdCheck.exe.x64	{9245E7EC-EDBD-41E1-858B-88810F3AFDD6}	$(UPDATER_BINDIR)	256		fileUpdCheck.exe.x64
+compUpdCheck.exe.x64	{9245E7EC-EDBD-41E1-858B-88810F3AFDD6}	$(UPDATER_BIN_DIR)	256		fileUpdCheck.exe.x64
 !ENDIF
 <<NOKEEP
 
@@ -53,7 +53,7 @@ All :: "$(LANG).$(PLAT).$(CFG).Feature-2.idt"
 Feature	Feature_Parent	Title	Description	Display	Level	Directory_	Attributes
 s$(MSIBUILD_LENGTH_ID)	S$(MSIBUILD_LENGTH_ID)	L64	L255	I2	i2	S$(MSIBUILD_LENGTH_ID)	i2
 1252	Feature	Feature
-featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background product updating	1001	2	$(UPDATER_BINDIR)	8
+featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background product updating	1001	2	$(UPDATER_BIN_DIR)	8
 <<NOKEEP
 
 "De.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\de_DE.po"
@@ -111,7 +111,7 @@ All :: "$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt"
 Task	DisplayName	Application	Parameters	Directory_	Flags	Priority	User	Password	Author	Description	IdleMin	IdleDeadline	MaxRuntime	Condition	Component_
 s$(MSIBUILD_LENGTH_ID)	l255	s255	S255	s$(MSIBUILD_LENGTH_ID)	i4	i4	S255	S255	L255	L0	I2	I2	i4	S255	s$(MSIBUILD_LENGTH_ID)
 1252	ScheduledTask	Task
-stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPDATER_BINDIR)	0	32			[Manufacturer]	Regularly checks for program updates, downloads, and installs them			-1		compUpdCheck.exe.$(PLAT)
+stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPDATER_BIN_DIR)	0	32			[Manufacturer]	Regularly checks for program updates, downloads, and installs them			-1		compUpdCheck.exe.$(PLAT)
 <<NOKEEP
 
 "De.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\de_DE.po"
