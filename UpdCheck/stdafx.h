@@ -25,20 +25,17 @@
 #include "../include/Updater.h"
 
 #include <wx/app.h>
+#include <wx/arrstr.h>
 #include <wx/base64.h>
+#include <wx/buffer.h>
 #include <wx/config.h>
-#include <wx/datetime.h>
 #include <wx/dir.h>
+#include <wx/ffile.h>
 #include <wx/filename.h>
 #include <wx/protocol/http.h>
 #include <wx/url.h>
 #include <wx/xml/xml.h>
 
-#include <wxex/common.h>
 #include <wxex/crypto.h>
 #include <wxex/hex.h>
 #include <wxex/xml.h>
-
-#include <algorithm>
-#include <vector>
-#include <fstream>
