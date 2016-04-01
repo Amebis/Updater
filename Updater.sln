@@ -14,6 +14,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxExtend", "..\lib\wxExtend
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UpdSignXML", "UpdSignXML\UpdSignXML.vcxproj", "{2A403460-7834-41B8-9823-199E8FE36FA8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UpdPublish", "UpdPublish\UpdPublish.vcxproj", "{C5829278-D55E-41EB-B866-1E7D814694D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -46,6 +48,14 @@ Global
 		{2A403460-7834-41B8-9823-199E8FE36FA8}.Release|Win32.Build.0 = Release|Win32
 		{2A403460-7834-41B8-9823-199E8FE36FA8}.Release|x64.ActiveCfg = Release|x64
 		{2A403460-7834-41B8-9823-199E8FE36FA8}.Release|x64.Build.0 = Release|x64
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Debug|Win32.Build.0 = Debug|Win32
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Debug|x64.ActiveCfg = Debug|x64
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Debug|x64.Build.0 = Debug|x64
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Release|Win32.ActiveCfg = Release|Win32
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Release|Win32.Build.0 = Release|Win32
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Release|x64.ActiveCfg = Release|x64
+		{C5829278-D55E-41EB-B866-1E7D814694D1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
