@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: UpdSignXML\n"
-"POT-Creation-Date: 2016-03-15 20:09+0100\n"
-"PO-Revision-Date: 2016-03-15 20:10+0100\n"
+"POT-Creation-Date: 2016-04-01 14:23+0200\n"
+"PO-Revision-Date: 2016-04-01 14:23+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
 "Language: sl_SI\n"
@@ -17,29 +17,14 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: main.cpp:138
+#: main.cpp:38
 msgid "Show this help message"
 msgstr "Pokaži to sporočilo pomoči"
 
-#: main.cpp:139
-msgid "Hexadecimal version of the product"
-msgstr "Verzija izdelka šesnajstiško"
+#: main.cpp:39
+msgid "input file"
+msgstr "vhodna datoteka"
 
-#: main.cpp:140
-msgid "String version of the product"
-msgstr "Verzija izdelka opisno"
-
-#: main.cpp:141
-msgid "Package language"
-msgstr "Jezik paketa"
-
-#: main.cpp:142
-msgid "Package download URL"
-msgstr "URL za prenos paketa"
-
-#: main.cpp:143
+#: main.cpp:40
 msgid "output file"
 msgstr "izhodna datoteka"
-
-#~ msgid "Package URL in the form of platform;language;URL"
-#~ msgstr "Naslov URL paketa oblike platforma;jezik;URL"
