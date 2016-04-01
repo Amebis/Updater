@@ -30,6 +30,3 @@
 #include <wxex/common.h>
 #include <wxex/crypto.h>
 #include <wxex/xml.h>
-
-#include <algorithm>
-#include <vector>
