@@ -469,26 +469,18 @@ bool wxUpdCheckApp::ReadUpdatePackageMeta()
 
 bool wxUpdCheckApp::DownloadUpdatePackage(const wxString &fileName)
 {
-    if (wxFileExists(fileName)) {
-        // The update package file already exists. Do the integrity check.
-        wxFFile file(fileName, wxT("rb"));
-        if (file.IsOpened()) {
-            // Calculate file hash.
-            wxCryptoHashSHA1 ch(*m_cs);
-            wxMemoryBuffer buf(4*1024);
-            char *data = (char*)buf.GetData();
-            size_t nBlock = buf.GetBufSize();
-            while (!file.Eof())
-                ch.Hash(data, file.Read(data, nBlock));
-            ch.GetValue(buf);
+    // Calculate file hash (if exists).
+    wxCryptoHashSHA1 ch(*m_cs);
+    if (ch.HashFile(fileName)) {
+        wxMemoryBuffer buf;
+        ch.GetValue(buf);
 
-            if (buf.GetDataLen() == m_hash.GetDataLen() &&
-                memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
-            {
-                // Update package file exists and its hash is correct.
-                wxLogStatus(wxT("Update package file already downloaded."));
-                return true;
-            }
+        if (buf.GetDataLen() == m_hash.GetDataLen() &&
+            memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
+        {
+            // Update package file exists and its hash is correct.
+            wxLogStatus(wxT("Update package file already downloaded."));
+            return true;
         }
     }
 
