@@ -496,6 +496,14 @@ bool wxUpdCheckApp::DownloadUpdatePackage(const wxString &fileName)
         if (!url.IsOk())
             continue;
 
+        if (url.HasScheme()) {
+            const wxString scheme = url.GetScheme();
+            if (scheme == wxT("http") || scheme == wxT("https")) {
+                wxHTTP &http = (wxHTTP&)url.GetProtocol();
+                http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(UPDATER_VERSION_STR));
+            }
+        }
+
         wxLogStatus(wxT("Downloading update package from %s..."), m_urls[i].c_str());
         wxInputStream *stream = url.GetInputStream();
         if (!stream) {
