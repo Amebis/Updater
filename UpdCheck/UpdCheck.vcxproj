@@ -94,7 +94,10 @@
     <POCompile Include="locale\sl_SI.po" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="locale\de_DE.po" />
+    <None Include="locale\ru_RU.po" />
     <None Include="locale\sl_SI.po" />
+    <None Include="locale\UpdCheck.pot" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\lib\wxExtend\build\wxExtend.vcxproj">

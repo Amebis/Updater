@@ -101,6 +101,11 @@
   <ItemGroup>
     <POCompile Include="locale\sl_SI.po" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="locale\de_DE.po" />
+    <None Include="locale\ru_RU.po" />
+    <None Include="locale\UpdSignXML.pot" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,25 +1,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: UpdCheck\n"
-"POT-Creation-Date: 2016-05-13 19:52+0200\n"
-"PO-Revision-Date: 2016-05-13 19:52+0200\n"
+"POT-Creation-Date: 2016-05-13 19:53+0200\n"
+"PO-Revision-Date: 2016-05-13 19:53+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
-"Language: sl_SI\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _\n"
 
 #: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:4
 #: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:4
 msgid "[SimpleProductName] Update"
-msgstr "Posodabljanje [SimpleProductName]"
+msgstr ""
 
 # Windows charset for this language (decimal)
 #: MSIBuild/En.Win32.Release.Feature-2.idtx:3
@@ -27,22 +26,22 @@ msgstr "Posodabljanje [SimpleProductName]"
 #: MSIBuild/En.x64.Release.Feature-2.idtx:3
 #: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:3
 msgid "1252"
-msgstr "1250"
+msgstr "1252"
 
 #: MSIBuild/En.Win32.Release.Feature-2.idtx:4
 #: MSIBuild/En.x64.Release.Feature-2.idtx:4
 msgid "Automatic Updating"
-msgstr "Samodejno posodabljanje"
+msgstr ""
 
 #: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:4
 #: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:4
 msgid "Regularly checks for program updates, downloads, and installs them"
-msgstr "Redno preverja za posodobitve programa, prenese in jih namesti"
+msgstr ""
 
 #: MSIBuild/En.Win32.Release.Feature-2.idtx:4
 #: MSIBuild/En.x64.Release.Feature-2.idtx:4
 msgid "Task for background product updating"
-msgstr "Opravilo za samodejno posodabljanje izdelka"
+msgstr ""
 
 #~ msgid "Show this help message"
 #~ msgstr "Pokaži to sporočilo pomoči"

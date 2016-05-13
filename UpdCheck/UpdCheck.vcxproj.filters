@@ -43,5 +43,14 @@
     <None Include="locale\sl_SI.po">
       <Filter>Resource Files\Localization</Filter>
     </None>
+    <None Include="locale\de_DE.po">
+      <Filter>Resource Files\Localization</Filter>
+    </None>
+    <None Include="locale\ru_RU.po">
+      <Filter>Resource Files\Localization</Filter>
+    </None>
+    <None Include="locale\UpdCheck.pot">
+      <Filter>Resource Files\Localization</Filter>
+    </None>
   </ItemGroup>
 </Project>
