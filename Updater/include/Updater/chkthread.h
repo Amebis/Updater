@@ -127,11 +127,14 @@ public:
     ///
     /// Launches update.
     ///
+    /// \param[in] hParent   Handle of parent window
+    /// \param[in] headless  Launch silent install
+    ///
     /// \returns
     /// - true if launch succeeded
     /// - false otherwise
     ///
-    bool LaunchUpdate();
+    bool LaunchUpdate(WXHWND hParent = NULL, bool headless = false);
 
 
 protected:

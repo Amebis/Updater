@@ -470,15 +470,14 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
 }
 
 
-bool wxUpdCheckThread::LaunchUpdate()
+bool wxUpdCheckThread::LaunchUpdate(WXHWND hParent, bool headless)
 {
     wxLogStatus(_("Launching update..."));
 
-    // Headless Install
-    wxString param("/qn");
+    wxString param(headless ? wxT("/qn ") : wxEmptyString);
 
     // Package
-    param += wxT(" /i \"");
+    param += wxT("/i \"");
     param += m_fileName;
     param += wxT("\"");
 
@@ -490,7 +489,7 @@ bool wxUpdCheckThread::LaunchUpdate()
     param += fileNameLog;
     param += wxT("\"");
 
-    int result = (int)::ShellExecute(NULL, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL);
+    int result = (int)::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL);
     if (result > 32) {
         wxLogStatus(_("msiexec.exe launch succeeded. For detailed information, see %s file."), fileNameLog.c_str());
         return true;

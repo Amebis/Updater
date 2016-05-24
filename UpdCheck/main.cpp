@@ -58,7 +58,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
     wxUpdCheckThread worker(locale.GetCanonicalName());
     wxUpdCheckThread::wxResult res = worker.CheckForUpdate();
     switch (res) {
-    case wxUpdCheckThread::wxUpdUpdateAvailable: return worker.LaunchUpdate() ? 0 : 1;
+    case wxUpdCheckThread::wxUpdUpdateAvailable: return worker.LaunchUpdate(NULL, true) ? 0 : 1;
     case wxUpdCheckThread::wxUpdUpToDate       : return 0;
     default                                    : return res;
     }
