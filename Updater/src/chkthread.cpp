@@ -109,7 +109,7 @@ wxUpdCheckThread::wxResult wxUpdCheckThread::DoCheckForUpdate()
         if (TestDestroy()) return wxUpdAborted;
         if (!ReadUpdatePackageMeta()) {
             // Reset CatalogueLastModified to force update catalogue download next time.
-            m_config.DeleteEntry(wxT("CatalogueLastModified"));
+            m_config.DeleteEntry(wxT("CatalogueLastModified"), false);
             return wxUpdRepoUnavailable;
         }
 
