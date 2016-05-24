@@ -162,8 +162,35 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             continue;
         } else if (TestDestroy())
             return NULL;
+
+        // wxXmlDocument::Load() fails reading from wxInputStream directly (in non-main threads).
+        // Therefore, save the repository catalog to temporary file first.
+        wxString fileName(m_path);
+        fileName += wxT("Updater-catalog.xml");
+        wxFFile file(fileName, wxT("wb"));
+        if (!file.IsOpened()) {
+            wxLogError(_("Can not open/create %s file for writing."), fileName.c_str());
+            return NULL;
+        }
+        wxMemoryBuffer buf(4*1024);
+        char *data = (char*)buf.GetData();
+        size_t nBlock = buf.GetBufSize();
+        do {
+            if (TestDestroy()) return NULL;
+
+            httpStream->Read(data, nBlock);
+            size_t nRead = httpStream->LastRead();
+            file.Write(data, nRead);
+            if (file.Error()) {
+                wxLogError(_("Can not write to %s file."), m_fileName.c_str());
+                return NULL;
+            }
+        } while (httpStream->IsOk());
+        file.Close();
+
+        // Read the repository catalog.
         wxScopedPtr<wxXmlDocument> doc(new wxXmlDocument());
-        if (!doc->Load(*httpStream, "UTF-8", wxXMLDOC_KEEP_WHITESPACE_NODES)) {
+        if (!doc->Load(fileName, "UTF-8", wxXMLDOC_KEEP_WHITESPACE_NODES)) {
             wxLogWarning(_("Error loading repository catalogue."));
             http.Close();
             continue;
