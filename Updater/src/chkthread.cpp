@@ -509,7 +509,7 @@ bool wxUpdCheckThread::LaunchUpdate()
 
     int result = (int)::ShellExecute(NULL, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL);
     if (result > 32) {
-        wxLogStatus(_("msiexec.exe launch succeeded. For further information, see %s file."), fileNameLog.c_str());
+        wxLogStatus(_("msiexec.exe launch succeeded. For detailed information, see %s file."), fileNameLog.c_str());
         return true;
     } else {
         wxLogError(_("msiexec.exe launch failed. ShellExecute returned %i."), result);
