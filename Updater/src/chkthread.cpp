@@ -405,7 +405,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
                 memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
             {
                 // Update package file exists and its hash is correct.
-                wxLogStatus(_("Update package file already downloaded."));
+                wxLogStatus(_("Update package file already downloaded and ready to install."));
                 return true;
             }
         }
@@ -433,7 +433,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
             }
         }
 
-        wxLogStatus(_("Downloading update package from %s..."), m_urls[i].c_str());
+        wxLogStatus(_("Downloading update package %s..."), m_urls[i].c_str());
         wxScopedPtr<wxInputStream> stream(url.GetInputStream());
         if (!stream) {
             wxLogWarning(_("Error response received."));
@@ -463,6 +463,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
             memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
         {
             // Update package file downloaded and its hash is correct.
+            wxLogStatus(_("Update package downloaded and ready to install."));
             return true;
         } else
             wxLogWarning(_("Update package file corrupt."));

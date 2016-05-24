@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Updater\n"
-"POT-Creation-Date: 2016-05-24 17:24+0200\n"
+"POT-Creation-Date: 2016-05-24 22:04+0200\n"
 "PO-Revision-Date: 2016-02-06 09:04+0100\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
@@ -18,104 +18,108 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: include\n"
 
-#: src/chkthread.cpp:100 src/chkthread.cpp:113
+#: src/chkthread.cpp:104 src/chkthread.cpp:117
 msgid "Update check complete. Your product is up to date."
 msgstr ""
 
-#: src/chkthread.cpp:133
+#: src/chkthread.cpp:137
 msgid "Downloading repository catalogue..."
 msgstr ""
 
-#: src/chkthread.cpp:141
+#: src/chkthread.cpp:145
 #, c-format
 msgid "Contacting repository at %s..."
 msgstr ""
 
-#: src/chkthread.cpp:149
+#: src/chkthread.cpp:153
 #, c-format
 msgid "Error resolving %s server name."
 msgstr ""
 
-#: src/chkthread.cpp:154
+#: src/chkthread.cpp:158
 msgid "Repository did not change since the last time."
 msgstr ""
 
-#: src/chkthread.cpp:158
+#: src/chkthread.cpp:161
 #, c-format
 msgid "Error response received from server %s (port %u) requesting %s."
 msgstr ""
 
-#: src/chkthread.cpp:166
-msgid "Error loading repository catalogue."
-msgstr ""
-
-#: src/chkthread.cpp:176
-msgid "Verifying repository catalogue signature..."
-msgstr ""
-
-#: src/chkthread.cpp:207
-msgid "Signature not found in the repository catalogue."
-msgstr ""
-
-#: src/chkthread.cpp:229
-msgid "Repository catalogue signature does not match its content, or signature verification failed."
-msgstr ""
-
-#: src/chkthread.cpp:237
-#, c-format
-msgid "Invalid root element in repository catalogue (actual: %s, expected: %s)."
-msgstr ""
-
-#: src/chkthread.cpp:255
-msgid "Parsing repository catalogue..."
-msgstr ""
-
-#: src/chkthread.cpp:340
-#, c-format
-msgid "Update package found (version: %s)."
-msgstr ""
-
-#: src/chkthread.cpp:398
-msgid "Reading update package meta-information from cache failed or incomplete."
-msgstr ""
-
-#: src/chkthread.cpp:421
-msgid "Update package file already downloaded."
-msgstr ""
-
-#: src/chkthread.cpp:429
+#: src/chkthread.cpp:172 src/chkthread.cpp:443
 #, c-format
 msgid "Can not open/create %s file for writing."
 msgstr ""
 
-#: src/chkthread.cpp:449
-#, c-format
-msgid "Downloading update package from %s..."
-msgstr ""
-
-#: src/chkthread.cpp:452
-msgid "Error response received."
-msgstr ""
-
-#: src/chkthread.cpp:471
+#: src/chkthread.cpp:185 src/chkthread.cpp:482
 #, c-format
 msgid "Can not write to %s file."
 msgstr ""
 
-#: src/chkthread.cpp:485
+#: src/chkthread.cpp:194
+msgid "Error loading repository catalogue."
+msgstr ""
+
+#: src/chkthread.cpp:201
+msgid "Verifying repository catalogue signature..."
+msgstr ""
+
+#: src/chkthread.cpp:232
+msgid "Signature not found in the repository catalogue."
+msgstr ""
+
+#: src/chkthread.cpp:245
+msgid "Repository catalogue signature does not match its content, or signature verification failed."
+msgstr ""
+
+#: src/chkthread.cpp:252
+#, c-format
+msgid "Invalid root element in repository catalogue (actual: %s, expected: %s)."
+msgstr ""
+
+#: src/chkthread.cpp:269
+msgid "Parsing repository catalogue..."
+msgstr ""
+
+#: src/chkthread.cpp:354
+#, c-format
+msgid "Update package found (version: %s)."
+msgstr ""
+
+#: src/chkthread.cpp:412
+msgid "Reading update package meta-information from cache failed or incomplete."
+msgstr ""
+
+#: src/chkthread.cpp:435
+msgid "Update package file already downloaded and ready to install."
+msgstr ""
+
+#: src/chkthread.cpp:463
+#, c-format
+msgid "Downloading update package %s..."
+msgstr ""
+
+#: src/chkthread.cpp:466
+msgid "Error response received."
+msgstr ""
+
+#: src/chkthread.cpp:493
+msgid "Update package downloaded and ready to install."
+msgstr ""
+
+#: src/chkthread.cpp:496
 msgid "Update package file corrupt."
 msgstr ""
 
-#: src/chkthread.cpp:494
+#: src/chkthread.cpp:505
 msgid "Launching update..."
 msgstr ""
 
-#: src/chkthread.cpp:513
+#: src/chkthread.cpp:524
 #, c-format
 msgid "msiexec.exe launch succeeded. For detailed information, see %s file."
 msgstr ""
 
-#: src/chkthread.cpp:516
+#: src/chkthread.cpp:527
 #, c-format
 msgid "msiexec.exe launch failed. ShellExecute returned %i."
 msgstr ""

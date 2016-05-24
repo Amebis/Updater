@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Updater\n"
-"POT-Creation-Date: 2016-05-24 17:24+0200\n"
-"PO-Revision-Date: 2016-05-24 17:25+0200\n"
+"POT-Creation-Date: 2016-05-24 22:04+0200\n"
+"PO-Revision-Date: 2016-05-24 22:05+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
 "Language: sl_SI\n"
@@ -16,46 +16,56 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _\n"
 
-#: src/chkthread.cpp:100 src/chkthread.cpp:113
+#: src/chkthread.cpp:104 src/chkthread.cpp:117
 msgid "Update check complete. Your product is up to date."
 msgstr "Preverjanje posodobitev končano. Vaš izdelek je zadnje verzije."
 
-#: src/chkthread.cpp:133
+#: src/chkthread.cpp:137
 msgid "Downloading repository catalogue..."
 msgstr "Prenos repozitorijevega kataloga ..."
 
-#: src/chkthread.cpp:141
+#: src/chkthread.cpp:145
 #, c-format
 msgid "Contacting repository at %s..."
 msgstr "Dostop do repozitorija na %s ..."
 
-#: src/chkthread.cpp:149
+#: src/chkthread.cpp:153
 #, c-format
 msgid "Error resolving %s server name."
 msgstr "Napaka pri ugotavljanju naslova strežnika %s."
 
-#: src/chkthread.cpp:154
+#: src/chkthread.cpp:158
 msgid "Repository did not change since the last time."
 msgstr "Repozitorij se od zadnjič ni spremenil."
 
-#: src/chkthread.cpp:158
+#: src/chkthread.cpp:161
 #, c-format
 msgid "Error response received from server %s (port %u) requesting %s."
 msgstr "Prejet odgovor o napaki s strežnika %s (vrata %u) pri zahtevi za %s."
 
-#: src/chkthread.cpp:166
+#: src/chkthread.cpp:172 src/chkthread.cpp:443
+#, c-format
+msgid "Can not open/create %s file for writing."
+msgstr "Ne morem odpreti/ustvariti datoteke %s za pisanje."
+
+#: src/chkthread.cpp:185 src/chkthread.cpp:482
+#, c-format
+msgid "Can not write to %s file."
+msgstr "Ne morem pisati v datoteko %s."
+
+#: src/chkthread.cpp:194
 msgid "Error loading repository catalogue."
 msgstr "Napaka pri nalaganju repozitorijevega kataloga."
 
-#: src/chkthread.cpp:176
+#: src/chkthread.cpp:201
 msgid "Verifying repository catalogue signature..."
 msgstr "Preverjanje podpisa repozitorijevega kataloga ..."
 
-#: src/chkthread.cpp:207
+#: src/chkthread.cpp:232
 msgid "Signature not found in the repository catalogue."
 msgstr "V repozitorijevem katalogu ni podpisa."
 
-#: src/chkthread.cpp:229
+#: src/chkthread.cpp:245
 msgid ""
 "Repository catalogue signature does not match its content, or signature "
 "verification failed."
@@ -63,7 +73,7 @@ msgstr ""
 "Podpis repozitorijevega kataloga ne ustreza njegovi vsebini, oziroma "
 "preverjanje podpisa ni uspelo."
 
-#: src/chkthread.cpp:237
+#: src/chkthread.cpp:252
 #, c-format
 msgid ""
 "Invalid root element in repository catalogue (actual: %s, expected: %s)."
@@ -71,60 +81,57 @@ msgstr ""
 "Napačen korenski element v repozitorijevem katalogu (dejanski: %s, "
 "pričakovan: %s)."
 
-#: src/chkthread.cpp:255
+#: src/chkthread.cpp:269
 msgid "Parsing repository catalogue..."
 msgstr "Razčlemba repozitorijevega kataloga ..."
 
-#: src/chkthread.cpp:340
+#: src/chkthread.cpp:354
 #, c-format
 msgid "Update package found (version: %s)."
 msgstr "Posodobitveni paket najden (verzija: %s)."
 
-#: src/chkthread.cpp:398
+#: src/chkthread.cpp:412
 msgid ""
 "Reading update package meta-information from cache failed or incomplete."
 msgstr ""
 "Branje meta-informacij posodobitvenega paketa iz predpomnilnika ni uspelo "
 "ali ni bilo celotno."
 
-#: src/chkthread.cpp:421
-msgid "Update package file already downloaded."
-msgstr "Posodobitveni paket je že prenesen."
+#: src/chkthread.cpp:435
+msgid "Update package file already downloaded and ready to install."
+msgstr "Posodobitveni paket je že prenesen in pripravljen na namestitev."
 
-#: src/chkthread.cpp:429
+#: src/chkthread.cpp:463
 #, c-format
-msgid "Can not open/create %s file for writing."
-msgstr "Ne morem odpreti/ustvariti datoteke %s za pisanje."
+msgid "Downloading update package %s..."
+msgstr "Prenos posodobitvenega paketa %s ..."
 
-#: src/chkthread.cpp:449
-#, c-format
-msgid "Downloading update package from %s..."
-msgstr "Prenos posodobitvenega paketa s/z %s ..."
-
-#: src/chkthread.cpp:452
+#: src/chkthread.cpp:466
 msgid "Error response received."
 msgstr "Prejet odgovor o napaki."
 
-#: src/chkthread.cpp:471
-#, c-format
-msgid "Can not write to %s file."
-msgstr "Ne morem pisati v datoteko %s."
+#: src/chkthread.cpp:493
+msgid "Update package downloaded and ready to install."
+msgstr "Posodobitveni paket je prenesen in pripravljen na namestitev."
 
-#: src/chkthread.cpp:485
+#: src/chkthread.cpp:496
 msgid "Update package file corrupt."
 msgstr "Posodobitveni paket je pokvarjen."
 
-#: src/chkthread.cpp:494
+#: src/chkthread.cpp:505
 msgid "Launching update..."
 msgstr "Zagon posodobitve ..."
 
-#: src/chkthread.cpp:513
+#: src/chkthread.cpp:524
 #, c-format
 msgid "msiexec.exe launch succeeded. For detailed information, see %s file."
 msgstr ""
 "Zagon msiexec.exe je uspel. Za podrobnejše informacije glejte datoteko %s."
 
-#: src/chkthread.cpp:516
+#: src/chkthread.cpp:527
 #, c-format
 msgid "msiexec.exe launch failed. ShellExecute returned %i."
 msgstr "Zagon msiexec.exe ni uspel. ShellExecute je vrnil %i."
+
+#~ msgid "Update package file already downloaded."
+#~ msgstr "Posodobitveni paket je že prenesen."
