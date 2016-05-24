@@ -192,11 +192,10 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
         wxScopedPtr<wxXmlDocument> doc(new wxXmlDocument());
         if (!doc->Load(fileName, "UTF-8", wxXMLDOC_KEEP_WHITESPACE_NODES)) {
             wxLogWarning(_("Error loading repository catalogue."));
-            http.Close();
             continue;
         }
         m_config.Write(wxT("CatalogueLastModified"), http.GetHeader(wxT("Last-Modified")));
-        http.Close();
+        wxRemoveFile(fileName);
 
         wxLogStatus(_("Verifying repository catalogue signature..."));
 
