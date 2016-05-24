@@ -82,6 +82,7 @@ s38	s$(MSIBUILD_LENGTH_ID)
 FeatureComponents	Feature_	Component_
 featUpdCheck	compUpdCheck.exe.$(PLAT)
 featUpdCheck	compwxExtend.dll.$(PLAT)
+featUpdCheck	compUpdater.dll.$(PLAT)
 <<NOKEEP
 
 

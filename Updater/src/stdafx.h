@@ -19,13 +19,19 @@
 
 #pragma once
 
-#include <Updater/chkthread.h>
+#include "../include/Updater/chkthread.h"
 
-#include <wx/app.h>
-#include <wx/config.h>
-#include <wx/dir.h>
-#include <wx/ffile.h>
+#include <wx/base64.h>
+#include <wx/buffer.h>
 #include <wx/filename.h>
-#include <wx/init.h>
+#include <wx/log.h>
+#include <wx/protocol/http.h>
+#include <wx/url.h>
 
-#include <wxex/common.h>
+#include <wxex/hex.h>
+#include <wxex/xml.h>
+
+//
+// Private data declaration
+//
+extern HINSTANCE g_hInstance;

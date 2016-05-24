@@ -1,0 +1,130 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Updater\n"
+"POT-Creation-Date: 2016-05-24 15:34+0200\n"
+"PO-Revision-Date: 2016-05-24 15:35+0200\n"
+"Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
+"Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _\n"
+
+#: src/chkthread.cpp:79 src/chkthread.cpp:92
+msgid "Update check complete. Your product is up to date."
+msgstr "Preverjanje posodobitev končano. Vaš izdelek je zadnje verzije."
+
+#: src/chkthread.cpp:112
+msgid "Downloading repository catalogue..."
+msgstr "Prenos repozitorijevega kataloga ..."
+
+#: src/chkthread.cpp:120
+#, c-format
+msgid "Contacting repository at %s..."
+msgstr "Dostop do repozitorija na %s ..."
+
+#: src/chkthread.cpp:128
+#, c-format
+msgid "Error resolving %s server name."
+msgstr "Napaka pri ugotavljanju naslova strežnika %s."
+
+#: src/chkthread.cpp:133
+msgid "Repository did not change since the last time."
+msgstr "Repozitorij se od zadnjič ni spremenil."
+
+#: src/chkthread.cpp:137
+#, c-format
+msgid "Error response received from server %s (port %u) requesting %s."
+msgstr "Prejet odgovor o napaki s strežnika %s (vrata %u) pri zahtevi za %s."
+
+#: src/chkthread.cpp:145
+msgid "Error loading repository catalogue."
+msgstr "Napaka pri nalaganju repozitorijevega kataloga."
+
+#: src/chkthread.cpp:155
+msgid "Verifying repository catalogue signature..."
+msgstr "Preverjanje podpisa repozitorijevega kataloga ..."
+
+#: src/chkthread.cpp:186
+msgid "Signature not found in the repository catalogue."
+msgstr "V repozitorijevem katalogu ni podpisa."
+
+#: src/chkthread.cpp:208
+msgid ""
+"Repository catalogue signature does not match its content, or signature "
+"verification failed."
+msgstr ""
+"Podpis repozitorijevega kataloga ne ustreza njegovi vsebini, oziroma "
+"preverjanje podpisa ni uspelo."
+
+#: src/chkthread.cpp:216
+#, c-format
+msgid ""
+"Invalid root element in repository catalogue (actual: %s, expected: %s)."
+msgstr ""
+"Napačen korenski element v repozitorijevem katalogu (dejanski: %s, "
+"pričakovan: %s)."
+
+#: src/chkthread.cpp:234
+msgid "Parsing repository catalogue..."
+msgstr "Razčlemba repozitorijevega kataloga ..."
+
+#: src/chkthread.cpp:319
+#, c-format
+msgid "Update package found (version: %s)."
+msgstr "Posodobitveni paket najden (verzija: %s)."
+
+#: src/chkthread.cpp:377
+msgid ""
+"Reading update package meta-information from cache failed or incomplete."
+msgstr ""
+"Branje meta-informacij posodobitvenega paketa iz predpomnilnika ni uspelo "
+"ali ni bilo celotno."
+
+#: src/chkthread.cpp:399
+msgid "Update package file already downloaded."
+msgstr "Posodobitveni paket je že prenesen."
+
+#: src/chkthread.cpp:406
+#, c-format
+msgid "Can not open/create %s file for writing."
+msgstr "Ne morem odpreti/ustvariti datoteke %s za pisanje."
+
+#: src/chkthread.cpp:426
+#, c-format
+msgid "Downloading update package from %s..."
+msgstr "Prenos posodobitvenega paketa s/z %s ..."
+
+#: src/chkthread.cpp:429
+msgid "Error response received."
+msgstr "Prejet odgovor o napaki."
+
+#: src/chkthread.cpp:448
+#, c-format
+msgid "Can not write to %s file."
+msgstr "Ne morem pisati v datoteko %s."
+
+#: src/chkthread.cpp:462
+msgid "Update package file corrupt."
+msgstr "Posodobitveni paket je pokvarjen."
+
+#: src/chkthread.cpp:471
+msgid "Launching update..."
+msgstr "Zagon posodobitve ..."
+
+#: src/chkthread.cpp:491
+#, c-format
+msgid "msiexec.exe launch succeeded. For further information, see %s file."
+msgstr ""
+"Zagon msiexec.exe je uspel. Za nadaljnje informacije glejte datoteko %s."
+
+#: src/chkthread.cpp:494
+#, c-format
+msgid "msiexec.exe launch failed. ShellExecute returned %i."
+msgstr "Zagon msiexec.exe ni uspel. ShellExecute je vrnil %i."

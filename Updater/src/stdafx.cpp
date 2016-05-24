@@ -17,15 +17,4 @@
     along with Updater. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
-
-#include <Updater/chkthread.h>
-
-#include <wx/app.h>
-#include <wx/config.h>
-#include <wx/dir.h>
-#include <wx/ffile.h>
-#include <wx/filename.h>
-#include <wx/init.h>
-
-#include <wxex/common.h>
+#include "stdafx.h"

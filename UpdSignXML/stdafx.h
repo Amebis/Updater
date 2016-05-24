@@ -19,8 +19,9 @@
 
 #pragma once
 
+#include "../Updater/include/Updater/common.h"
+
 #include "UpdSignXML.h"
-#include "../include/Updater.h"
 
 #include <wx/app.h>
 #include <wx/base64.h>

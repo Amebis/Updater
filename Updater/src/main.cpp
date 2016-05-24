@@ -17,15 +17,24 @@
     along with Updater. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#include "stdafx.h"
 
-#include <Updater/chkthread.h>
 
-#include <wx/app.h>
-#include <wx/config.h>
-#include <wx/dir.h>
-#include <wx/ffile.h>
-#include <wx/filename.h>
-#include <wx/init.h>
+///
+/// Module instance
+///
+HINSTANCE g_hInstance = NULL;
 
-#include <wxex/common.h>
+
+///
+/// Main function
+///
+BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved)
+{
+    UNREFERENCED_PARAMETER(lpvReserved);
+
+    if (fdwReason == DLL_PROCESS_ATTACH)
+        g_hInstance = hinstDLL;
+
+    return TRUE;
+}

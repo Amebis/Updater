@@ -19,10 +19,9 @@
 
 #pragma once
 
-#include "../../include/UpdaterCfg.h"
+#include "../Updater/include/Updater/common.h"
 
 #include "UpdPublish.h"
-#include "../include/Updater.h"
 
 #include <wx/app.h>
 #include <wx/base64.h>

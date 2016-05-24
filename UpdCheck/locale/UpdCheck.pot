@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: UpdCheck\n"
-"POT-Creation-Date: 2016-05-13 19:52+0200\n"
+"POT-Creation-Date: 2016-05-24 13:24+0200\n"
 "PO-Revision-Date: 2016-03-30 11:37+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
@@ -18,33 +18,45 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: MSIBuild/En.Win32.Debug.ScheduledTask-2.idtx:4
 #: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:4
+#: MSIBuild/En.x64.Debug.ScheduledTask-2.idtx:4
 #: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:4
 #, fuzzy
 msgid "[SimpleProductName] Update"
 msgstr "Posodabljanje [SimpleProductName]"
 
+#: MSIBuild/En.Win32.Debug.Feature-2.idtx:3
+#: MSIBuild/En.Win32.Debug.ScheduledTask-2.idtx:3
 #: MSIBuild/En.Win32.Release.Feature-2.idtx:3
 #: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:3
+#: MSIBuild/En.x64.Debug.Feature-2.idtx:3
+#: MSIBuild/En.x64.Debug.ScheduledTask-2.idtx:3
 #: MSIBuild/En.x64.Release.Feature-2.idtx:3
 #: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:3
 #, fuzzy
 msgid "1252"
 msgstr "1250"
 
+#: MSIBuild/En.Win32.Debug.Feature-2.idtx:4
 #: MSIBuild/En.Win32.Release.Feature-2.idtx:4
+#: MSIBuild/En.x64.Debug.Feature-2.idtx:4
 #: MSIBuild/En.x64.Release.Feature-2.idtx:4
 #, fuzzy
 msgid "Automatic Updating"
 msgstr "Samodejno posodabljanje"
 
+#: MSIBuild/En.Win32.Debug.ScheduledTask-2.idtx:4
 #: MSIBuild/En.Win32.Release.ScheduledTask-2.idtx:4
+#: MSIBuild/En.x64.Debug.ScheduledTask-2.idtx:4
 #: MSIBuild/En.x64.Release.ScheduledTask-2.idtx:4
 #, fuzzy
 msgid "Regularly checks for program updates, downloads, and installs them"
 msgstr "Redno preverja za posodobitve programa, prenese in jih namesti"
 
+#: MSIBuild/En.Win32.Debug.Feature-2.idtx:4
 #: MSIBuild/En.Win32.Release.Feature-2.idtx:4
+#: MSIBuild/En.x64.Debug.Feature-2.idtx:4
 #: MSIBuild/En.x64.Release.Feature-2.idtx:4
 #, fuzzy
 msgid "Task for background product updating"
