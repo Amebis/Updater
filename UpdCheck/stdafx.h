@@ -27,5 +27,6 @@
 #include <wx/ffile.h>
 #include <wx/filename.h>
 #include <wx/init.h>
+#include <wx/scopedptr.h>
 
 #include <wxex/common.h>

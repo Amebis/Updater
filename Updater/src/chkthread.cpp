@@ -19,6 +19,10 @@
 
 #include "stdafx.h"
 
+//////////////////////////////////////////////////////////////////////////
+// wxEVT_UPDATER_CHECK_COMPLETE
+//////////////////////////////////////////////////////////////////////////
+
 wxDEFINE_EVENT(wxEVT_UPDATER_CHECK_COMPLETE, wxThreadEvent);
 
 
@@ -88,7 +92,7 @@ wxUpdCheckThread::wxResult wxUpdCheckThread::DoCheckForUpdate()
 
     // Download update catalogue.
     if (TestDestroy()) return wxUpdAborted;
-    wxXmlDocument *doc = GetCatalogue();
+    wxScopedPtr<wxXmlDocument> doc(GetCatalogue());
     if (doc) {
         // Parse the update catalogue to check for an update package availability.
         if (TestDestroy()) return wxUpdAborted;
@@ -149,27 +153,21 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             wxLogWarning(_("Error resolving %s server name."), server);
             continue;
         }
-        wxInputStream *httpStream = http.GetInputStream(wxS(UPDATER_HTTP_PATH));
+        wxScopedPtr<wxInputStream> httpStream(http.GetInputStream(wxS(UPDATER_HTTP_PATH)));
         if (http.GetResponse() == 304) {
             wxLogStatus(_("Repository did not change since the last time."));
-            wxDELETE(httpStream);
             return NULL;
         } else if (!httpStream) {
             wxLogWarning(_("Error response received from server %s (port %u) requesting %s."), server, UPDATER_HTTP_PORT, UPDATER_HTTP_PATH);
             continue;
-        } else if (TestDestroy()) {
-            wxDELETE(httpStream);
+        } else if (TestDestroy())
             return NULL;
-        }
-        wxXmlDocument *doc = new wxXmlDocument();
+        wxScopedPtr<wxXmlDocument> doc(new wxXmlDocument());
         if (!doc->Load(*httpStream, "UTF-8", wxXMLDOC_KEEP_WHITESPACE_NODES)) {
             wxLogWarning(_("Error loading repository catalogue."));
-            wxDELETE(httpStream);
             http.Close();
-            delete doc;
             continue;
         }
-        wxDELETE(httpStream);
         m_config.Write(wxT("CatalogueLastModified"), http.GetHeader(wxT("Last-Modified")));
         http.Close();
 
@@ -205,29 +203,19 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
 
         if (sig.IsEmpty()) {
             wxLogWarning(_("Signature not found in the repository catalogue."));
-            delete doc;
             continue;
         }
 
         // Hash the content.
-        if (TestDestroy()) {
-            delete doc;
-            return NULL;
-        }
+        if (TestDestroy()) return NULL;
         wxCryptoHashSHA1 ch(*m_cs);
-        if (!wxXmlHashNode(ch, document)) {
-            delete doc;
+        if (!wxXmlHashNode(ch, document))
             continue;
-        }
 
         // We have the hash, we have the signature, we have the public key. Now verify.
-        if (TestDestroy()) {
-            delete doc;
-            return NULL;
-        }
+        if (TestDestroy()) return NULL;
         if (!wxCryptoVerifySignature(ch, sig, *m_ck)) {
             wxLogWarning(_("Repository catalogue signature does not match its content, or signature verification failed."));
-            delete doc;
             continue;
         }
 
@@ -235,12 +223,11 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
         const wxString &nameRoot = doc->GetRoot()->GetName();
         if (nameRoot != wxT("Packages")) {
             wxLogWarning(_("Invalid root element in repository catalogue (actual: %s, expected: %s)."), nameRoot.c_str(), wxT("Packages"));
-            delete doc;
             continue;
         }
 
         // The downloaded repository database passed all checks.
-        return doc;
+        return doc.release();
     }
 
     // No repository database downloaded successfully.
@@ -445,7 +432,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
         }
 
         wxLogStatus(_("Downloading update package from %s..."), m_urls[i].c_str());
-        wxInputStream *stream = url.GetInputStream();
+        wxScopedPtr<wxInputStream> stream(url.GetInputStream());
         if (!stream) {
             wxLogWarning(_("Error response received."));
             continue;
@@ -457,10 +444,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
         char *data = (char*)buf.GetData();
         size_t nBlock = buf.GetBufSize();
         do {
-            if (TestDestroy()) {
-                wxDELETE(stream);
-                return false;
-            }
+            if (TestDestroy()) return false;
 
             stream->Read(data, nBlock);
             size_t nRead = stream->LastRead();
@@ -472,7 +456,6 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
             ch.Hash(data, nRead);
         } while (stream->IsOk());
         ch.GetValue(buf);
-        wxDELETE(stream);
 
         if (buf.GetDataLen() == m_hash.GetDataLen() &&
             memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
