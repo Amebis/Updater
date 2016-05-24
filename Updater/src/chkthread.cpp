@@ -394,18 +394,20 @@ bool wxUpdCheckThread::ReadUpdatePackageMeta()
 
 bool wxUpdCheckThread::DownloadUpdatePackage()
 {
-    // Calculate file hash (if exists).
-    wxCryptoHashSHA1 ch(*m_cs);
-    if (ch.HashFile(m_fileName)) {
-        wxMemoryBuffer buf;
-        ch.GetValue(buf);
+    if (wxFileExists(m_fileName)) {
+        // Calculate file hash.
+        wxCryptoHashSHA1 ch(*m_cs);
+        if (ch.HashFile(m_fileName)) {
+            wxMemoryBuffer buf;
+            ch.GetValue(buf);
 
-        if (buf.GetDataLen() == m_hash.GetDataLen() &&
-            memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
-        {
-            // Update package file exists and its hash is correct.
-            wxLogStatus(_("Update package file already downloaded."));
-            return true;
+            if (buf.GetDataLen() == m_hash.GetDataLen() &&
+                memcmp(buf.GetData(), m_hash.GetData(), buf.GetDataLen()) == 0)
+            {
+                // Update package file exists and its hash is correct.
+                wxLogStatus(_("Update package file already downloaded."));
+                return true;
+            }
         }
     }
 
