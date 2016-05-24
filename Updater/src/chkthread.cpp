@@ -102,6 +102,7 @@ wxUpdCheckThread::wxResult wxUpdCheckThread::DoCheckForUpdate()
             WriteUpdatePackageMeta();
         } else {
             wxLogStatus(_("Update check complete. Your product is up to date."));
+            WriteUpdatePackageMeta();
             return wxUpdUpToDate;
         }
     } else {
