@@ -32,6 +32,7 @@ wxDEFINE_EVENT(wxEVT_UPDATER_CHECK_COMPLETE, wxThreadEvent);
 
 wxUpdCheckThread::wxUpdCheckThread(const wxString &langId, wxEvtHandler *parent) :
     m_parent(parent),
+    m_abort(false),
     m_langId(langId),
     m_config(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR)),
     m_cs(NULL),
@@ -82,6 +83,12 @@ wxThread::ExitCode wxUpdCheckThread::Entry()
     }
 
     return (wxThread::ExitCode)(int)result;
+}
+
+
+bool wxUpdCheckThread::TestDestroy()
+{
+    return m_abort || wxThread::TestDestroy();
 }
 
 

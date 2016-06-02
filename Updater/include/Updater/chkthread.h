@@ -67,6 +67,14 @@ public:
         return DoCheckForUpdate();
     }
 
+    ///
+    /// Aborts current update check
+    ///
+    inline void Abort()
+    {
+        m_abort = true;
+    }
+
 protected:
     ///
     /// Thread's body
@@ -74,6 +82,11 @@ protected:
     /// \returns Exit code
     ///
     virtual ExitCode Entry();
+
+    ///
+    /// Overrriden method to allow custom termination when Updater is launched in the main thread.
+    ///
+    virtual bool TestDestroy();
 
     ///
     /// Checks for updates and safely downloads update package when available.
@@ -140,6 +153,7 @@ public:
 protected:
     wxEvtHandler *m_parent; ///< Parent to notify
     bool m_ok;              ///< Is class initialized correctly?
+    volatile bool m_abort;  ///< Should Update check abort?
 
     wxString m_langId;      ///< Language identifier
     wxConfig m_config;      ///< Application configuration
