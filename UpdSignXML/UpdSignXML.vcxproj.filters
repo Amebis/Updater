@@ -40,17 +40,17 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <POCompile Include="locale\de_DE.po">
+      <Filter>Resource Files\Localization</Filter>
+    </POCompile>
+    <POCompile Include="locale\ru_RU.po">
+      <Filter>Resource Files\Localization</Filter>
+    </POCompile>
     <POCompile Include="locale\sl_SI.po">
       <Filter>Resource Files\Localization</Filter>
     </POCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locale\de_DE.po">
-      <Filter>Resource Files\Localization</Filter>
-    </None>
-    <None Include="locale\ru_RU.po">
-      <Filter>Resource Files\Localization</Filter>
-    </None>
     <None Include="locale\UpdSignXML.pot">
       <Filter>Resource Files\Localization</Filter>
     </None>

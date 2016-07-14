@@ -37,15 +37,17 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locale\sl_SI.po">
+    <POCompile Include="locale\de_DE.po">
       <Filter>Resource Files\Localization</Filter>
-    </None>
-    <None Include="locale\de_DE.po">
+    </POCompile>
+    <POCompile Include="locale\ru_RU.po">
       <Filter>Resource Files\Localization</Filter>
-    </None>
-    <None Include="locale\ru_RU.po">
+    </POCompile>
+    <POCompile Include="locale\sl_SI.po">
       <Filter>Resource Files\Localization</Filter>
-    </None>
+    </POCompile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="locale\UpdCheck.pot">
       <Filter>Resource Files\Localization</Filter>
     </None>

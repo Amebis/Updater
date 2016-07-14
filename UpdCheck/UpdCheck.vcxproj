@@ -90,12 +90,11 @@
     <ResourceCompile Include="UpdCheck.rc" />
   </ItemGroup>
   <ItemGroup>
+    <POCompile Include="locale\de_DE.po" />
+    <POCompile Include="locale\ru_RU.po" />
     <POCompile Include="locale\sl_SI.po" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locale\de_DE.po" />
-    <None Include="locale\ru_RU.po" />
-    <None Include="locale\sl_SI.po" />
     <None Include="locale\UpdCheck.pot" />
   </ItemGroup>
   <ItemGroup>

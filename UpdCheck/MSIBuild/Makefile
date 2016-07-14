@@ -65,6 +65,9 @@ featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background prod
 "It.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\it_IT.po"
 	rcxgettext.exe idtp $@ $**
 
+"Ru.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\ru_RU.po"
+	rcxgettext.exe idtp $@ $**
+
 "Sl.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\sl_SI.po"
 	rcxgettext.exe idtp $@ $**
 
@@ -122,6 +125,9 @@ stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPD
 	copy /y $** $@ > NUL
 
 "It.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\it_IT.po"
+	rcxgettext.exe idtp $@ $**
+
+"Ru.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\ru_RU.po"
 	rcxgettext.exe idtp $@ $**
 
 "Sl.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\sl_SI.po"
