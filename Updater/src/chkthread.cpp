@@ -511,7 +511,7 @@ bool wxUpdCheckThread::LaunchUpdate(WXHWND hParent, bool headless)
 {
     wxLogStatus(_("Launching update..."));
 
-    wxString param(headless ? wxT("/qn ") : wxEmptyString);
+    wxString param(headless ? wxT("/qn /norestart ") : wxEmptyString);
 
     // Package
     param += wxT("/i \"");
