@@ -56,20 +56,13 @@ s$(MSIBUILD_LENGTH_ID)	S$(MSIBUILD_LENGTH_ID)	L64	L255	I2	i2	S$(MSIBUILD_LENGTH_
 featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background product updating	1001	2	$(UPDATER_BIN_DIR)	8
 <<NOKEEP
 
-"De.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\de_DE.po"
-	rcxgettext.exe idtp $@ $**
-
+!IF "$(LANG)" == "En"
 "En.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx"
 	copy /y $** $@ > NUL
-
-"It.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\it_IT.po"
+!ELSE
+"$(LANG).$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\$(MSIBUILD_LANG_PO).po"
 	rcxgettext.exe idtp $@ $**
-
-"Ru.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\ru_RU.po"
-	rcxgettext.exe idtp $@ $**
-
-"Sl.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\sl_SI.po"
-	rcxgettext.exe idtp $@ $**
+!ENDIF
 
 
 ######################################################################
@@ -118,20 +111,13 @@ s$(MSIBUILD_LENGTH_ID)	l255	s255	S255	s$(MSIBUILD_LENGTH_ID)	i4	i4	S255	S255	L25
 stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPDATER_BIN_DIR)	0	32			[Manufacturer]	Regularly checks for program updates, downloads, and installs them			-1		compUpdCheck.exe.$(PLAT)
 <<NOKEEP
 
-"De.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\de_DE.po"
-	rcxgettext.exe idtp $@ $**
-
+!IF "$(LANG)" == "En"
 "En.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx"
 	copy /y $** $@ > NUL
-
-"It.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\it_IT.po"
+!ELSE
+"$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\$(MSIBUILD_LANG_PO).po"
 	rcxgettext.exe idtp $@ $**
-
-"Ru.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\ru_RU.po"
-	rcxgettext.exe idtp $@ $**
-
-"Sl.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\sl_SI.po"
-	rcxgettext.exe idtp $@ $**
+!ENDIF
 
 
 ######################################################################
