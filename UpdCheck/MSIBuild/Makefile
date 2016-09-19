@@ -61,7 +61,7 @@ featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background prod
 	copy /y $** $@ > NUL
 !ELSE
 "$(LANG).$(PLAT).$(CFG).Feature-2.idt" : "en_US.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\$(LANG).po"
-	rcxgettext.exe idtp $@ $**
+	cscript.exe "..\..\..\MSI\MSIBuild\MSI.wsf" //Job:IDTTranslate //Nologo $@ $** /CP:$(MSIBUILD_CODEPAGE)
 !ENDIF
 
 
@@ -116,7 +116,7 @@ stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPD
 	copy /y $** $@ > NUL
 !ELSE
 "$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt" : "en_US.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\$(LANG).po"
-	rcxgettext.exe idtp $@ $**
+	cscript.exe "..\..\..\MSI\MSIBuild\MSI.wsf" //Job:IDTTranslate //Nologo $@ $** /CP:$(MSIBUILD_CODEPAGE)
 !ENDIF
 
 
