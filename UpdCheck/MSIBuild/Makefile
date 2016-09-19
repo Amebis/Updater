@@ -47,7 +47,7 @@ compUpdCheck.exe.x64	{9245E7EC-EDBD-41E1-858B-88810F3AFDD6}	$(UPDATER_BIN_DIR)	2
 
 All :: "$(LANG).$(PLAT).$(CFG).Feature-2.idt"
 
-"En.$(PLAT).$(CFG).Feature-2.idtx" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
+"en_US.$(PLAT).$(CFG).Feature-2.idtx" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
 	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Feature	Feature_Parent	Title	Description	Display	Level	Directory_	Attributes
@@ -56,11 +56,11 @@ s$(MSIBUILD_LENGTH_ID)	S$(MSIBUILD_LENGTH_ID)	L64	L255	I2	i2	S$(MSIBUILD_LENGTH_
 featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background product updating	1001	2	$(UPDATER_BIN_DIR)	8
 <<NOKEEP
 
-!IF "$(LANG)" == "En"
-"En.$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx"
+!IF "$(LANG)" == "en_US"
+"en_US.$(PLAT).$(CFG).Feature-2.idt" : "en_US.$(PLAT).$(CFG).Feature-2.idtx"
 	copy /y $** $@ > NUL
 !ELSE
-"$(LANG).$(PLAT).$(CFG).Feature-2.idt" : "En.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\$(MSIBUILD_LANG_PO).po"
+"$(LANG).$(PLAT).$(CFG).Feature-2.idt" : "en_US.$(PLAT).$(CFG).Feature-2.idtx" "..\locale\$(LANG).po"
 	rcxgettext.exe idtp $@ $**
 !ENDIF
 
@@ -102,7 +102,7 @@ fileUpdCheck.exe.$(PLAT)	compUpdCheck.exe.$(PLAT)	UPDCHECK.EXE|UpdCheck.exe	0		0
 
 All :: "$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt"
 
-"En.$(PLAT).$(CFG).ScheduledTask-2.idtx" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
+"en_US.$(PLAT).$(CFG).ScheduledTask-2.idtx" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
 	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Task	DisplayName	Application	Parameters	Directory_	Flags	Priority	User	Password	Author	Description	IdleMin	IdleDeadline	MaxRuntime	Condition	Component_
@@ -111,11 +111,11 @@ s$(MSIBUILD_LENGTH_ID)	l255	s255	S255	s$(MSIBUILD_LENGTH_ID)	i4	i4	S255	S255	L25
 stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPDATER_BIN_DIR)	0	32			[Manufacturer]	Regularly checks for program updates, downloads, and installs them			-1		compUpdCheck.exe.$(PLAT)
 <<NOKEEP
 
-!IF "$(LANG)" == "En"
-"En.$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx"
+!IF "$(LANG)" == "en_US"
+"en_US.$(PLAT).$(CFG).ScheduledTask-2.idt" : "en_US.$(PLAT).$(CFG).ScheduledTask-2.idtx"
 	copy /y $** $@ > NUL
 !ELSE
-"$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt" : "En.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\$(MSIBUILD_LANG_PO).po"
+"$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt" : "en_US.$(PLAT).$(CFG).ScheduledTask-2.idtx" "..\locale\$(LANG).po"
 	rcxgettext.exe idtp $@ $**
 !ENDIF
 

@@ -45,10 +45,10 @@ compUpdater.dll.Win32	{F4962976-71C3-4200-B736-BC841FEE29C2}	$(UPDATER_BIN_DIR)	
 !IF "$(PLAT)" == "x64"
 compUpdater.dll.x64	{A968C387-EC14-4CAC-8406-F21C9779D3EF}	$(UPDATER_BIN_DIR)	256		fileUpdater.dll.x64
 !ENDIF
-!IF "$(LANG)" == "Ru"
+!IF "$(LANG)" == "ru_RU"
 compUpdater.mo.ru_RU	{486A9DDF-A43B-4920-BEF9-2907DD8660AD}	UPDATERLOCRURUDIR	$(MSIBUILD_COMPONENT_ATTRIB_FILE)		fileUpdater.mo.ru_RU
 !ENDIF
-!IF "$(LANG)" == "Sl"
+!IF "$(LANG)" == "sl_SI"
 compUpdater.mo.sl_SI	{2A56FA39-F4E6-492F-A863-AFE9E53FA988}	UPDATERLOCSLSIDIR	$(MSIBUILD_COMPONENT_ATTRIB_FILE)		fileUpdater.mo.sl_SI
 !ENDIF
 <<NOKEEP
@@ -65,10 +65,10 @@ All :: "$(LANG).$(PLAT).$(CFG).Directory-1.idt"
 Directory	Directory_Parent	DefaultDir
 s$(MSIBUILD_LENGTH_ID)	S$(MSIBUILD_LENGTH_ID)	l255
 Directory	Directory
-!IF "$(LANG)" == "Ru"
+!IF "$(LANG)" == "ru_RU"
 UPDATERLOCRURUDIR	$(UPDATER_LOC_DIR)	ru_RU
 !ENDIF
-!IF "$(LANG)" == "Sl"
+!IF "$(LANG)" == "sl_SI"
 UPDATERLOCSLSIDIR	$(UPDATER_LOC_DIR)	sl_SI
 !ENDIF
 <<NOKEEP
@@ -101,10 +101,10 @@ fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~6.DLL|Updater10u_vc100_x64.dll	0	
 fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~8.DLL|Updater10ud_vc100_x64.dll	0		0	1536	1
 !ENDIF
 !ENDIF
-!IF "$(LANG)" == "Ru"
+!IF "$(LANG)" == "ru_RU"
 fileUpdater.mo.ru_RU	compUpdater.mo.ru_RU	UPDATE~1.MO|Updater10.mo	0		1060	0	1
 !ENDIF
-!IF "$(LANG)" == "Sl"
+!IF "$(LANG)" == "sl_SI"
 fileUpdater.mo.sl_SI	compUpdater.mo.sl_SI	UPDATE~1.MO|Updater10.mo	0		1060	0	1
 !ENDIF
 <<NOKEEP
