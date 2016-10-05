@@ -32,6 +32,18 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
     if (!initializer.IsOk())
         return -1;
 
+    // Initialize configuration.
+    wxConfigBase *cfgPrev = wxConfigBase::Set(new wxConfig(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR)));
+    if (cfgPrev) wxDELETE(cfgPrev);
+
+    // Initialize locale.
+    wxLocale locale;
+    if (wxInitializeLocale(locale)) {
+        // Do not add translation catalog, to keep log messages in English.
+        // Log files are for help-desk and should remain globally intelligible.
+        //wxVERIFY(locale.AddCatalog(wxT("Updater") wxT(wxExtendVersion)));
+    }
+
     // Create output folder.
     wxString path(wxFileName::GetTempDir());
     if (!wxEndsWithPathSeparator(path))
@@ -43,17 +55,6 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
     wxFFile log_file(path + wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT(".log"), wxT("wt"));
     if (log_file.IsOpened())
         delete wxLog::SetActiveTarget(new wxLogStderr(log_file.fp()));
-
-    // Set desired locale.
-    wxConfig config(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR));
-    wxLanguage language = (wxLanguage)config.Read(wxT("Language"), wxLANGUAGE_DEFAULT);
-    wxLocale locale;
-    if (wxLocale::IsAvailable(language)) {
-        wxVERIFY(locale.Init(language));
-        // Do not add translation catalog, to keep log messages in English.
-        // Log files are for help-desk and should remain globally intelligible.
-        //wxVERIFY(locale.AddCatalog(wxT("Updater") wxT(wxExtendVersion)));
-    }
 
     wxUpdCheckThread worker(locale.GetCanonicalName());
     wxUpdCheckThread::wxResult res = worker.CheckForUpdate();
