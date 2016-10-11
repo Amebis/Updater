@@ -44,10 +44,10 @@ Component	ComponentId	Directory_	Attributes	Condition	KeyPath
 s$(MSIBUILD_LENGTH_ID)	S38	s$(MSIBUILD_LENGTH_ID)	i2	S255	S$(MSIBUILD_LENGTH_ID)
 Component	Component
 !IF "$(PLAT)" == "Win32"
-compUpdater.dll.Win32	{F4962976-71C3-4200-B736-BC841FEE29C2}	$(UPDATER_BIN_DIR)	0		fileUpdater.dll.Win32
+compUpdater.dll.Win32	{A2DD60BC-D9D1-4D22-A4BF-C28E007C0765}	$(UPDATER_BIN_DIR)	0		fileUpdater.dll.Win32
 !ENDIF
 !IF "$(PLAT)" == "x64"
-compUpdater.dll.x64	{A968C387-EC14-4CAC-8406-F21C9779D3EF}	$(UPDATER_BIN_DIR)	256		fileUpdater.dll.x64
+compUpdater.dll.x64	{2D45C321-2118-4ECC-975D-40991E0860C8}	$(UPDATER_BIN_DIR)	256		fileUpdater.dll.x64
 !ENDIF
 !IF "$(LANG)" == "ru_RU"
 compUpdater.mo.ru_RU	{486A9DDF-A43B-4920-BEF9-2907DD8660AD}	UPDATERLOCRURUDIR	$(MSIBUILD_COMPONENT_ATTRIB_FILE)		fileUpdater.mo.ru_RU
@@ -91,22 +91,22 @@ s$(MSIBUILD_LENGTH_ID)	s$(MSIBUILD_LENGTH_ID)	l255	i4	S$(MSIBUILD_LENGTH_ID)	S20
 File	File
 !IF "$(PLAT)" == "Win32"
 !IF "$(CFG)" == "Release"
-fileUpdater.dll.Win32	compUpdater.dll.Win32	UPDATE~2.DLL|Updater10u_vc100.dll	0		0	1536	1
+fileUpdater.dll.Win32	compUpdater.dll.Win32	UPDATE~1.DLL|Updater$(UPDATER_VERSION)u_vc100.dll	0		0	1536	1
 !ENDIF
 !IF "$(CFG)" == "Debug"
-fileUpdater.dll.Win32	compUpdater.dll.Win32	UPDATE~4.DLL|Updater10ud_vc100.dll	0		0	1536	1
+fileUpdater.dll.Win32	compUpdater.dll.Win32	UPDATE~1.DLL|Updater$(UPDATER_VERSION)ud_vc100.dll	0		0	1536	1
 !ENDIF
 !ENDIF
 !IF "$(PLAT)" == "x64"
 !IF "$(CFG)" == "Release"
-fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~6.DLL|Updater10u_vc100_x64.dll	0		0	1536	1
+fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~1.DLL|Updater$(UPDATER_VERSION)u_vc100_x64.dll	0		0	1536	1
 !ENDIF
 !IF "$(CFG)" == "Debug"
-fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~8.DLL|Updater10ud_vc100_x64.dll	0		0	1536	1
+fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~1.DLL|Updater$(UPDATER_VERSION)ud_vc100_x64.dll	0		0	1536	1
 !ENDIF
 !ENDIF
 !IF "$(LANG)" != "en_US"
-fileUpdater.mo.$(LANG)	compUpdater.mo.$(LANG)	UPDATE~1.MO|Updater10.mo	0		$(MSIBUILD_LANGID)	0	1
+fileUpdater.mo.$(LANG)	compUpdater.mo.$(LANG)	UPDATE~1.MO|Updater$(UPDATER_VERSION).mo	0		$(MSIBUILD_LANGID)	0	1
 !ENDIF
 <<NOKEEP
 

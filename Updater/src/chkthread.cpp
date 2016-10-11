@@ -34,7 +34,7 @@ wxUpdCheckThread::wxUpdCheckThread(const wxString &langId, wxEvtHandler *parent)
     m_parent(parent),
     m_abort(false),
     m_langId(langId),
-    m_config(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR)),
+    m_config(wxT(PRODUCT_CFG_APPLICATION) wxT("\\Updater"), wxT(PRODUCT_CFG_VENDOR)),
     m_cs(NULL),
     m_ck(NULL),
     m_version(0),
@@ -121,14 +121,14 @@ wxUpdCheckThread::wxResult wxUpdCheckThread::DoCheckForUpdate()
             return wxUpdRepoUnavailable;
         }
 
-        if (m_version <= UPDATER_PRODUCT_VERSION) {
+        if (m_version <= PRODUCT_VERSION) {
             wxLogStatus(_("Update check complete. Your product is up to date."));
             return wxUpdUpToDate;
         }
     }
 
     m_fileName  = m_path;
-    m_fileName += wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-");
+    m_fileName += wxT("Updater-") wxT(PRODUCT_CFG_APPLICATION) wxT("-");
     m_fileName += m_versionStr;
     m_fileName += wxT(".msi");
 
@@ -154,7 +154,7 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
 
         // Load repository database.
         wxHTTP http;
-        http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(UPDATER_VERSION_STR));
+        http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(PRODUCT_VERSION_STR));
         if (!lastModified.IsEmpty())
             http.SetHeader(wxS("If-Modified-Since"), lastModified);
         if (!http.Connect(server, UPDATER_HTTP_PORT)) {
@@ -296,7 +296,7 @@ bool wxUpdCheckThread::ParseCatalogue(const wxXmlDocument &doc)
                     }
                 }
             }
-            if (version <= UPDATER_PRODUCT_VERSION || version < m_version) {
+            if (version <= PRODUCT_VERSION || version < m_version) {
                 // This package is older than currently installed product or the superseeded package found already.
                 continue;
             }
@@ -463,7 +463,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
             const wxString scheme = url.GetScheme();
             if (scheme == wxT("http") || scheme == wxT("https")) {
                 wxHTTP &http = (wxHTTP&)url.GetProtocol();
-                http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(UPDATER_VERSION_STR));
+                http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(PRODUCT_VERSION_STR));
             }
         }
 
@@ -520,7 +520,7 @@ bool wxUpdCheckThread::LaunchUpdate(WXHWND hParent, bool headless)
 
     // Logging
     wxString fileNameLog(m_path);
-    fileNameLog += wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT("-msiexec.log");
+    fileNameLog += wxT("Updater-") wxT(PRODUCT_CFG_APPLICATION) wxT("-msiexec.log");
 
     param += wxT(" /l* \"");
     param += fileNameLog;

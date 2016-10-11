@@ -33,7 +33,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         return -1;
 
     // Initialize configuration.
-    wxConfigBase *cfgPrev = wxConfigBase::Set(new wxConfig(wxT(UPDATER_CFG_APPLICATION) wxT("\\Updater"), wxT(UPDATER_CFG_VENDOR)));
+    wxConfigBase *cfgPrev = wxConfigBase::Set(new wxConfig(wxT(PRODUCT_CFG_APPLICATION) wxT("\\Updater"), wxT(PRODUCT_CFG_VENDOR)));
     if (cfgPrev) wxDELETE(cfgPrev);
 
     // Initialize locale.
@@ -52,7 +52,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         wxMkdir(path);
 
     // Prepare log file.
-    wxFFile log_file(path + wxT("Updater-") wxT(UPDATER_CFG_APPLICATION) wxT(".log"), wxT("wt"));
+    wxFFile log_file(path + wxT("Updater-") wxT(PRODUCT_CFG_APPLICATION) wxT(".log"), wxT("wt"));
     if (log_file.IsOpened())
         delete wxLog::SetActiveTarget(new wxLogStderr(log_file.fp()));
 

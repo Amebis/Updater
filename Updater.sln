@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UpdPublish", "UpdPublish\Up
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Updater", "Updater\build\Updater.vcxproj", "{990D8CF9-4457-4DC0-AA18-4968EF434741}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28F748D5-D691-4F00-9464-37AF062CF91F}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\UpdaterCfg.h = ..\include\UpdaterCfg.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

@@ -85,10 +85,10 @@ void UpdaterAddDownloads(wxXmlNode *elPackage, const wxString &platformId, const
 void UpdaterAddPackage(wxXmlNode *elPackages, const wxString &platformId, const wxString &languageId, const wxString &url, const wxMemoryBuffer &hash)
 {
     wxXmlNode *elHex = new wxXmlNode(wxXML_ELEMENT_NODE, wxT("hex"));
-    elHex->AddChild(new wxXmlNode(wxXML_TEXT_NODE, wxEmptyString, wxString::Format(wxT("%08x"), UPDATER_PRODUCT_VERSION)));
+    elHex->AddChild(new wxXmlNode(wxXML_TEXT_NODE, wxEmptyString, wxString::Format(wxT("%08x"), PRODUCT_VERSION)));
 
     wxXmlNode *elDesc = new wxXmlNode(wxXML_ELEMENT_NODE, wxT("desc"));
-    elDesc->AddChild(new wxXmlNode(wxXML_TEXT_NODE, wxEmptyString, wxT(UPDATER_PRODUCT_VERSION_STR)));
+    elDesc->AddChild(new wxXmlNode(wxXML_TEXT_NODE, wxEmptyString, wxT(PRODUCT_VERSION_STR)));
 
     wxXmlNode *elVersion = new wxXmlNode(wxXML_ELEMENT_NODE, wxT("Version"));
     elVersion->AddChild(new wxXmlNode(wxXML_TEXT_NODE, wxEmptyString, wxT("\n\t\t\t")));
@@ -201,7 +201,7 @@ int _tmain(int argc, _TCHAR *argv[])
                     }
                 }
             }
-            if (version != UPDATER_PRODUCT_VERSION) {
+            if (version != PRODUCT_VERSION) {
                 // This package is not our version. Skip.
                 continue;
             }
