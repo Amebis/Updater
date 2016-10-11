@@ -19,6 +19,10 @@
 
 !INCLUDE "..\..\..\include\MSIBuildCfg.mak"
 
+!IFNDEF MSIBUILD_LANGID
+!ERROR Parameter MSIBUILD_LANGID is undefined.
+!ENDIF
+
 !IFNDEF UPDATER_BIN_DIR
 !ERROR Parameter UPDATER_BIN_DIR is undefined.
 !ENDIF
@@ -101,11 +105,8 @@ fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~6.DLL|Updater10u_vc100_x64.dll	0	
 fileUpdater.dll.x64	compUpdater.dll.x64	UPDATE~8.DLL|Updater10ud_vc100_x64.dll	0		0	1536	1
 !ENDIF
 !ENDIF
-!IF "$(LANG)" == "ru_RU"
-fileUpdater.mo.ru_RU	compUpdater.mo.ru_RU	UPDATE~1.MO|Updater10.mo	0		1060	0	1
-!ENDIF
-!IF "$(LANG)" == "sl_SI"
-fileUpdater.mo.sl_SI	compUpdater.mo.sl_SI	UPDATE~1.MO|Updater10.mo	0		1060	0	1
+!IF "$(LANG)" != "en_US"
+fileUpdater.mo.$(LANG)	compUpdater.mo.$(LANG)	UPDATE~1.MO|Updater10.mo	0		$(MSIBUILD_LANGID)	0	1
 !ENDIF
 <<NOKEEP
 
