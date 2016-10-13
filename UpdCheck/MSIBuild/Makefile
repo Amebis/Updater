@@ -131,7 +131,30 @@ All :: "$(LANG).$(PLAT).$(CFG).TaskTrigger-1.idt"
 Trigger	BeginDate	EndDate	StartTime	StartTimeRand	MinutesDuration	MinutesInterval	Flags	Type	DaysInterval	WeeksInterval	DaysOfTheWeek	DaysOfMonth	WeekOfMonth	MonthsOfYear	Task_
 s$(MSIBUILD_LENGTH_ID)	i2	I2	i2	I2	I4	I4	i4	i2	I2	I2	I2	I4	I2	I2	s$(MSIBUILD_LENGTH_ID)
 TaskTrigger	Trigger
-ttUpdCheck.daily.$(PLAT)	0		0	59	1440	60	0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.00.$(PLAT)	0		0	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.01.$(PLAT)	0		60	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.02.$(PLAT)	0		120	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.03.$(PLAT)	0		180	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.04.$(PLAT)	0		240	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.05.$(PLAT)	0		300	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.06.$(PLAT)	0		360	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.07.$(PLAT)	0		420	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.08.$(PLAT)	0		480	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.09.$(PLAT)	0		540	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.10.$(PLAT)	0		600	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.11.$(PLAT)	0		660	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.12.$(PLAT)	0		720	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.13.$(PLAT)	0		780	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.14.$(PLAT)	0		840	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.15.$(PLAT)	0		900	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.16.$(PLAT)	0		960	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.17.$(PLAT)	0		1020	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.18.$(PLAT)	0		1080	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.19.$(PLAT)	0		1140	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.20.$(PLAT)	0		1200	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.21.$(PLAT)	0		1260	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.22.$(PLAT)	0		1320	59			0	1	1						stUpdCheck.$(PLAT)
+ttUpdCheck.daily.23.$(PLAT)	0		1380	59			0	1	1						stUpdCheck.$(PLAT)
 <<NOKEEP
 
 
