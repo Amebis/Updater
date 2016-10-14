@@ -154,7 +154,7 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
 
         // Load repository database.
         wxHTTP http;
-        http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(PRODUCT_VERSION_STR));
+        http.SetHeader(wxS("User-Agent"), wxS("Updater-") wxT(PRODUCT_CFG_APPLICATION) wxS("/") wxS(PRODUCT_VERSION_STR));
         if (!lastModified.IsEmpty())
             http.SetHeader(wxS("If-Modified-Since"), lastModified);
         if (!http.Connect(server, UPDATER_HTTP_PORT)) {
