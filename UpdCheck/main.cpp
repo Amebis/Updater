@@ -33,12 +33,13 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
         return -1;
 
     // Initialize configuration.
-    wxConfigBase *cfgPrev = wxConfigBase::Set(new wxConfig(wxT(PRODUCT_CFG_APPLICATION) wxT("\\Updater"), wxT(PRODUCT_CFG_VENDOR)));
+    wxConfigBase *cfgPrev = wxConfigBase::Set(new wxConfig(wxT(PRODUCT_CFG_APPLICATION), wxT(PRODUCT_CFG_VENDOR)));
     if (cfgPrev) wxDELETE(cfgPrev);
 
     // Initialize locale.
     wxLocale locale;
-    if (wxInitializeLocale(locale)) {
+    wxLanguage lang_ui;
+    if (wxInitializeLocale(locale, &lang_ui)) {
         // Do not add translation catalog, to keep log messages in English.
         // Log files are for help-desk and should remain globally intelligible.
         //wxVERIFY(locale.AddCatalog(wxT("Updater") wxT(wxExtendVersion)));
@@ -56,7 +57,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
     if (log_file.IsOpened())
         delete wxLog::SetActiveTarget(new wxLogStderr(log_file.fp()));
 
-    wxUpdCheckThread worker(locale.GetCanonicalName());
+    wxUpdCheckThread worker(lang_ui == wxLANGUAGE_DEFAULT ? wxT("en_US") : wxLocale::GetLanguageCanonicalName(lang_ui));
     wxUpdCheckThread::wxResult res = worker.CheckForUpdate();
     switch (res) {
     case wxUpdCheckThread::wxUpdUpdateAvailable: return worker.LaunchUpdate(NULL, true) ? 0 : 1;
