@@ -463,7 +463,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
             const wxString scheme = url.GetScheme();
             if (scheme == wxT("http") || scheme == wxT("https")) {
                 wxHTTP &http = (wxHTTP&)url.GetProtocol();
-                http.SetHeader(wxS("User-Agent"), wxS("Updater/") wxS(PRODUCT_VERSION_STR));
+                http.SetHeader(wxS("User-Agent"), wxS("Updater-") wxT(PRODUCT_CFG_APPLICATION) wxS("/") wxS(PRODUCT_VERSION_STR));
             }
         }
 
