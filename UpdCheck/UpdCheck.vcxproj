@@ -98,7 +98,7 @@
     <None Include="locale\UpdCheck.pot" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\wxExtend\build\wxExtendDll.vcxproj">
+    <ProjectReference Include="..\..\lib\wxExtend\build\wxExtendDll-10.0.vcxproj">
       <Project>{a3a36689-ac35-4026-93da-a3ba0c0e767c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Updater\build\Updater.vcxproj">
