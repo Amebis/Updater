@@ -79,6 +79,11 @@ FeatureComponents	Feature_	Component_
 featUpdCheck	compUpdCheck.exe.$(PLAT)
 featUpdCheck	compwxExtend.dll.$(PLAT)
 featUpdCheck	compUpdater.dll.$(PLAT)
+featUpdCheck	compwxbase.dll.$(PLAT)
+featUpdCheck	compwxbase_net.dll.$(PLAT)
+featUpdCheck	compwxbase_xml.dll.$(PLAT)
+featUpdCheck	compwxmsw_core.dll.$(PLAT)
+featUpdCheck	compwxmsw_aui.dll.$(PLAT)
 <<NOKEEP
 
 
