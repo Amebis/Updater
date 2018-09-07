@@ -33,11 +33,12 @@
 ///
 /// Public function calling convention
 ///
-#ifdef UPDATER
-#define UPDATER_API    __declspec(dllexport)
-#else
-#define UPDATER_API    __declspec(dllimport)
-#endif
+//#ifdef UPDATER
+//#define UPDATER_API    __declspec(dllexport)
+//#else
+//#define UPDATER_API    __declspec(dllimport)
+//#endif
+#define UPDATER_API
 
 #define UPDATER_SIGNATURE_MARK  "SHA1SIGN:"
 

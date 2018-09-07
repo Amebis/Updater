@@ -135,8 +135,8 @@
     <ClInclude Include="UpdPublish.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\wxExtend\build\wxExtendDll-15.0.vcxproj">
-      <Project>{a3a36689-ac35-4026-93da-a3ba0c0e767c}</Project>
+    <ProjectReference Include="..\..\lib\wxExtend\build\wxExtendLib-15.0.vcxproj">
+      <Project>{D3E29951-D9F5-486D-A167-20AE8E90B1FA}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
