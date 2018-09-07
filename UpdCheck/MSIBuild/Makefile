@@ -19,6 +19,10 @@
 
 !INCLUDE "..\..\..\include\MSIBuildCfg.mak"
 
+!IFNDEF UPDATER_BIN_DIR
+!ERROR Parameter UPDATER_BIN_DIR is undefined.
+!ENDIF
+
 MSIBUILD_IS_LOCALIZEABLE=1
 
 
