@@ -82,7 +82,7 @@ wxThread::ExitCode wxUpdCheckThread::Entry()
         wxQueueEvent(m_parent, e);
     }
 
-    return (wxThread::ExitCode)(static_cast<INT_PTR>(result) & 0xffffffff);
+    return (wxThread::ExitCode)(static_cast<intptr_t>(result) & 0xffffffff);
 }
 
 
@@ -526,7 +526,7 @@ bool wxUpdCheckThread::LaunchUpdate(WXHWND hParent, bool headless)
     param += fileNameLog;
     param += wxT("\"");
 
-    int result = static_cast<int>((INT_PTR)::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL) & 0xffffffff);
+    intptr_t result = (intptr_t)::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL);
     if (result > 32) {
         wxLogStatus(_("msiexec.exe launch succeeded. For detailed information, see %s file."), fileNameLog.c_str());
         return true;
