@@ -1,5 +1,5 @@
 /*
-    Copyright 2016-2017 Amebis
+    Copyright 2016-2018 Amebis
 
     This file is part of Updater.
 
@@ -82,7 +82,7 @@ wxThread::ExitCode wxUpdCheckThread::Entry()
         wxQueueEvent(m_parent, e);
     }
 
-    return (wxThread::ExitCode)(int)result;
+    return (wxThread::ExitCode)static_cast<int>(result & 0xffffffff);
 }
 
 
@@ -526,7 +526,7 @@ bool wxUpdCheckThread::LaunchUpdate(WXHWND hParent, bool headless)
     param += fileNameLog;
     param += wxT("\"");
 
-    int result = (int)::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL);
+    int result = static_cast<int>((INT_PTR)::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL) & 0xffffffff);
     if (result > 32) {
         wxLogStatus(_("msiexec.exe launch succeeded. For detailed information, see %s file."), fileNameLog.c_str());
         return true;
