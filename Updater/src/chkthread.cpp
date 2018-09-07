@@ -82,7 +82,7 @@ wxThread::ExitCode wxUpdCheckThread::Entry()
         wxQueueEvent(m_parent, e);
     }
 
-    return (wxThread::ExitCode)static_cast<int>(result & 0xffffffff);
+    return (wxThread::ExitCode)(static_cast<INT_PTR>(result) & 0xffffffff);
 }
 
 
