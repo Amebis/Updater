@@ -150,19 +150,19 @@
     <TargetName>$(ProjectName)$(UpdaterVersion)ud_vc$(PlatformToolsetVersion)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>$(ProjectName)$(UpdaterVersion)ud_vc$(PlatformToolsetVersion)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)$(UpdaterVersion)ud_vc$(PlatformToolsetVersion)_x64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <TargetName>$(ProjectName)$(UpdaterVersion)ud_vc$(PlatformToolsetVersion)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)$(UpdaterVersion)ud_vc$(PlatformToolsetVersion)_arm64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>$(ProjectName)$(UpdaterVersion)u_vc$(PlatformToolsetVersion)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>$(ProjectName)$(UpdaterVersion)u_vc$(PlatformToolsetVersion)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)$(UpdaterVersion)u_vc$(PlatformToolsetVersion)_x64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <TargetName>$(ProjectName)$(UpdaterVersion)u_vc$(PlatformToolsetVersion)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)$(UpdaterVersion)u_vc$(PlatformToolsetVersion)_arm64</TargetName>
   </PropertyGroup>
   <PropertyGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
