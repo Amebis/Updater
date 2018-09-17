@@ -162,9 +162,13 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             continue;
         }
         wxScopedPtr<wxInputStream> httpStream(http.GetInputStream(wxS(UPDATER_HTTP_PATH)));
-        if (http.GetResponse() == 304) {
+        int status = http.GetResponse();
+        if (status == 304) {
             wxLogStatus(_("Repository did not change since the last time."));
             return NULL;
+        } else if (status != 200) {
+            wxLogWarning(_("%u status received from server %s (port %u) requesting %s."), status, server, UPDATER_HTTP_PORT, UPDATER_HTTP_PATH);
+            continue;
         } else if (!httpStream) {
             wxLogWarning(_("Error response received from server %s (port %u) requesting %s."), server, UPDATER_HTTP_PORT, UPDATER_HTTP_PATH);
             continue;
