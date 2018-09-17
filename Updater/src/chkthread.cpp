@@ -194,7 +194,7 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             size_t nRead = httpStream->LastRead();
             file.Write(data, nRead);
             if (file.Error()) {
-                wxLogError(_("Can not write to %s file."), m_fileName.c_str());
+                wxLogError(_("Can not write to %s file."), fileName.c_str());
                 return NULL;
             }
         } while (httpStream->IsOk());
