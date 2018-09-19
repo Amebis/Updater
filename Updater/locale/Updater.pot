@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Updater\n"
-"POT-Creation-Date: 2016-10-05 10:45+0200\n"
+"POT-Creation-Date: 2018-09-19 08:59+0200\n"
 "PO-Revision-Date: 2016-02-06 09:04+0100\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -36,90 +36,95 @@ msgstr ""
 msgid "Error resolving %s server name."
 msgstr ""
 
-#: src/chkthread.cpp:166
+#: src/chkthread.cpp:167
 msgid "Repository did not change since the last time."
 msgstr ""
 
-#: src/chkthread.cpp:169
+#: src/chkthread.cpp:170
+#, c-format
+msgid "%u status received from server %s (port %u) requesting %s."
+msgstr ""
+
+#: src/chkthread.cpp:173
 #, c-format
 msgid "Error response received from server %s (port %u) requesting %s."
 msgstr ""
 
-#: src/chkthread.cpp:180 src/chkthread.cpp:450
+#: src/chkthread.cpp:184 src/chkthread.cpp:454
 #, c-format
 msgid "Can not open/create %s file for writing."
 msgstr ""
 
-#: src/chkthread.cpp:193 src/chkthread.cpp:489
+#: src/chkthread.cpp:197 src/chkthread.cpp:493
 #, c-format
 msgid "Can not write to %s file."
 msgstr ""
 
-#: src/chkthread.cpp:202
+#: src/chkthread.cpp:206
 msgid "Error loading repository catalogue."
 msgstr ""
 
-#: src/chkthread.cpp:208
+#: src/chkthread.cpp:212
 msgid "Verifying repository catalogue signature..."
 msgstr ""
 
-#: src/chkthread.cpp:239
+#: src/chkthread.cpp:243
 msgid "Signature not found in the repository catalogue."
 msgstr ""
 
-#: src/chkthread.cpp:252
+#: src/chkthread.cpp:256
 msgid "Repository catalogue signature does not match its content, or signature verification failed."
 msgstr ""
 
-#: src/chkthread.cpp:259
+#: src/chkthread.cpp:263
 #, c-format
 msgid "Invalid root element in repository catalogue (actual: %s, expected: %s)."
 msgstr ""
 
-#: src/chkthread.cpp:276
+#: src/chkthread.cpp:280
 msgid "Parsing repository catalogue..."
 msgstr ""
 
-#: src/chkthread.cpp:361
+#: src/chkthread.cpp:365
 #, c-format
 msgid "Update package found (version: %s)."
 msgstr ""
 
-#: src/chkthread.cpp:419
+#: src/chkthread.cpp:423
 msgid "Reading update package meta-information from cache failed or incomplete."
 msgstr ""
 
-#: src/chkthread.cpp:442
+#: src/chkthread.cpp:446
 msgid "Update package file already downloaded and ready to install."
 msgstr ""
 
-#: src/chkthread.cpp:470
+#: src/chkthread.cpp:474
 #, c-format
 msgid "Downloading update package %s..."
 msgstr ""
 
-#: src/chkthread.cpp:473
+#: src/chkthread.cpp:477
 msgid "Error response received."
 msgstr ""
 
-#: src/chkthread.cpp:500
+#: src/chkthread.cpp:504
 msgid "Update package downloaded and ready to install."
 msgstr ""
 
-#: src/chkthread.cpp:503
+#: src/chkthread.cpp:507
 msgid "Update package file corrupt."
 msgstr ""
 
-#: src/chkthread.cpp:512
+#: src/chkthread.cpp:516
 msgid "Launching update..."
 msgstr ""
 
-#: src/chkthread.cpp:531
+#: src/chkthread.cpp:535
 #, c-format
 msgid "msiexec.exe launch succeeded. For detailed information, see %s file."
 msgstr ""
 
-#: src/chkthread.cpp:534
+#: src/chkthread.cpp:538
 #, c-format
 msgid "msiexec.exe launch failed. ShellExecute returned %i."
 msgstr ""
