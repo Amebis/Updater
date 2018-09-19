@@ -1,20 +1,23 @@
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Updater\n"
-"POT-Creation-Date: 2016-10-05 10:46+0200\n"
-"PO-Revision-Date: 2016-10-05 10:46+0200\n"
-"Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
-"Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2018-09-19 08:59+0200\n"
+"PO-Revision-Date: 2016-02-06 09:04+0100\n"
+"Last-Translator: Simon Rozman <simon@rozman.si>, 2018\n"
+"Language-Team: Russian (Russia) (https://www.transifex.com/amebis/teams/91597/ru_RU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
-"X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Language: ru_RU\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: include\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: src/chkthread.cpp:111 src/chkthread.cpp:125
 msgid "Update check complete. Your product is up to date."
@@ -35,38 +38,43 @@ msgstr "Контактирование репозитория при %s ..."
 msgid "Error resolving %s server name."
 msgstr "Ошибка при разрешении имени сервера %s."
 
-#: src/chkthread.cpp:166
+#: src/chkthread.cpp:167
 msgid "Repository did not change since the last time."
 msgstr "Репозиторий не от последней проверки изменился."
 
-#: src/chkthread.cpp:169
+#: src/chkthread.cpp:170
+#, c-format
+msgid "%u status received from server %s (port %u) requesting %s."
+msgstr ""
+
+#: src/chkthread.cpp:173
 #, c-format
 msgid "Error response received from server %s (port %u) requesting %s."
 msgstr "От сервера %s (порт %u) получен ошибочный ответ при запросе %s."
 
-#: src/chkthread.cpp:180 src/chkthread.cpp:450
+#: src/chkthread.cpp:184 src/chkthread.cpp:454
 #, c-format
 msgid "Can not open/create %s file for writing."
 msgstr "Открытие/создание файла %s для записи невозможно."
 
-#: src/chkthread.cpp:193 src/chkthread.cpp:489
+#: src/chkthread.cpp:197 src/chkthread.cpp:493
 #, c-format
 msgid "Can not write to %s file."
 msgstr "Запись в файл %s невозможен."
 
-#: src/chkthread.cpp:202
+#: src/chkthread.cpp:206
 msgid "Error loading repository catalogue."
 msgstr "Ошибка при загрузке каталога репозитория."
 
-#: src/chkthread.cpp:208
+#: src/chkthread.cpp:212
 msgid "Verifying repository catalogue signature..."
 msgstr "Проверка подписи каталога репозитория ..."
 
-#: src/chkthread.cpp:239
+#: src/chkthread.cpp:243
 msgid "Signature not found in the repository catalogue."
 msgstr "Подпись в каталоге репозитория не найдена."
 
-#: src/chkthread.cpp:252
+#: src/chkthread.cpp:256
 msgid ""
 "Repository catalogue signature does not match its content, or signature "
 "verification failed."
@@ -74,7 +82,7 @@ msgstr ""
 "Подпись каталога репозитория, или не соответствует его содержанию или "
 "проверка подписи завершилась ошибкой."
 
-#: src/chkthread.cpp:259
+#: src/chkthread.cpp:263
 #, c-format
 msgid ""
 "Invalid root element in repository catalogue (actual: %s, expected: %s)."
@@ -82,55 +90,55 @@ msgstr ""
 "Недействительный корневой элемент в каталоге репозитория (фактический: %s, "
 "ожидаемый: %s)."
 
-#: src/chkthread.cpp:276
+#: src/chkthread.cpp:280
 msgid "Parsing repository catalogue..."
 msgstr "Анализ каталога репозитория ..."
 
-#: src/chkthread.cpp:361
+#: src/chkthread.cpp:365
 #, c-format
 msgid "Update package found (version: %s)."
 msgstr "Найден пакет обновления (версия: %s)."
 
-#: src/chkthread.cpp:419
+#: src/chkthread.cpp:423
 msgid ""
 "Reading update package meta-information from cache failed or incomplete."
 msgstr ""
 "Чтение метаданных пакета обновления в кэше завершилась ошибкой, или чтение "
 "не завершилось."
 
-#: src/chkthread.cpp:442
+#: src/chkthread.cpp:446
 msgid "Update package file already downloaded and ready to install."
 msgstr "Файл пакета обновления уже загружен и готов к установке."
 
-#: src/chkthread.cpp:470
+#: src/chkthread.cpp:474
 #, c-format
 msgid "Downloading update package %s..."
 msgstr "Загрузка пакета обновления %s ..."
 
-#: src/chkthread.cpp:473
+#: src/chkthread.cpp:477
 msgid "Error response received."
 msgstr "Получен ошибочный ответ."
 
-#: src/chkthread.cpp:500
+#: src/chkthread.cpp:504
 msgid "Update package downloaded and ready to install."
 msgstr "Пакет обновления загружен и готов к установке."
 
-#: src/chkthread.cpp:503
+#: src/chkthread.cpp:507
 msgid "Update package file corrupt."
 msgstr "Файл пакета обновления испорчен."
 
-#: src/chkthread.cpp:512
+#: src/chkthread.cpp:516
 msgid "Launching update..."
 msgstr "Запуск обновления ..."
 
-#: src/chkthread.cpp:531
+#: src/chkthread.cpp:535
 #, c-format
 msgid "msiexec.exe launch succeeded. For detailed information, see %s file."
 msgstr ""
 "Запуск msiexec.exe успешно выполнен. Для получения подробной информации см. "
 "файл %s."
 
-#: src/chkthread.cpp:534
+#: src/chkthread.cpp:538
 #, c-format
 msgid "msiexec.exe launch failed. ShellExecute returned %i."
 msgstr "Запуск msiexec.exe завершился ошибкой. ShellExecute возвратил %i."
