@@ -1,18 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: UpdPublish\n"
-"POT-Creation-Date: 2016-10-05 10:50+0200\n"
-"PO-Revision-Date: 2016-10-05 10:50+0200\n"
+"POT-Creation-Date: 2018-09-19 10:47+0200\n"
+"PO-Revision-Date: 2018-09-19 10:48+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _\n"
 
@@ -25,21 +24,21 @@ msgid "Package file to calculate SHA-1 hash from"
 msgstr "Datoteka paketa, od katere izračunamo odtis SHA-1"
 
 #: main.cpp:129
-msgid "<input repository file>"
-msgstr "<vhodna datoteka repozitorija>"
+msgid "input repository file"
+msgstr "vhodna datoteka repozitorija"
 
 #: main.cpp:130
-msgid "<output repository file>"
-msgstr "<izhodna datoteka repozitorija>"
+msgid "output repository file"
+msgstr "izhodna datoteka repozitorija"
 
 #: main.cpp:131
-msgid "<platform>"
-msgstr "<platforma>"
+msgid "platform"
+msgstr "platforma"
 
 #: main.cpp:132
-msgid "<language>"
-msgstr "<jezik>"
+msgid "language"
+msgstr "jezik"
 
 #: main.cpp:133
-msgid "<download URL>"
-msgstr "<URL za prenos>"
+msgid "download URL"
+msgstr "URL za prenos"

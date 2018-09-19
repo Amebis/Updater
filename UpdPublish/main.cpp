@@ -124,13 +124,13 @@ int _tmain(int argc, _TCHAR *argv[])
     // Parse command line.
     static const wxCmdLineEntryDesc cmdLineDesc[] =
     {
-        { wxCMD_LINE_SWITCH, "h" , "help", _("Show this help message"                   ), wxCMD_LINE_VAL_NONE  , wxCMD_LINE_OPTION_HELP      },
-        { wxCMD_LINE_OPTION, "f" , "file", _("Package file to calculate SHA-1 hash from"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL   },
-        { wxCMD_LINE_PARAM , NULL, NULL  , _("<input repository file>"                  ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
-        { wxCMD_LINE_PARAM , NULL, NULL  , _("<output repository file>"                 ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
-        { wxCMD_LINE_PARAM , NULL, NULL  , _("<platform>"                               ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
-        { wxCMD_LINE_PARAM , NULL, NULL  , _("<language>"                               ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
-        { wxCMD_LINE_PARAM , NULL, NULL  , _("<download URL>"                           ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_SWITCH, "h" , "help", _("Show this help message"                   )                       , wxCMD_LINE_VAL_NONE  , wxCMD_LINE_OPTION_HELP      },
+        { wxCMD_LINE_OPTION, "f" , "file", _("Package file to calculate SHA-1 hash from")                       , wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL   },
+        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("input repository file" ) + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("output repository file") + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("platform"              ) + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("language"              ) + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("download URL"          ) + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
 
         { wxCMD_LINE_NONE }
     };
