@@ -227,7 +227,7 @@ int _tmain(int argc, _TCHAR *argv[])
                                                     wxMemoryBuffer hashOrig;
                                                     wxString content(elLocaleNote->GetNodeContent());
                                                     size_t len = wxHexDecodedSize(content.length());
-                                                    size_t res = wxHexDecode(hashOrig.GetWriteBuf(len), len, content, wxHexDecodeMode_SkipWS);
+                                                    size_t res = wxHexDecode(hashOrig.GetWriteBuf(len), len, content, wxHexDecodeMode::SkipWS);
                                                     if (res != wxCONV_FAILED) {
                                                         hashOrig.SetDataLen(res);
                                                         if (hash.GetDataLen() == hashOrig.GetDataLen() &&

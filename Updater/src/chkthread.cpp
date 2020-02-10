@@ -334,7 +334,7 @@ bool wxUpdCheckThread::ParseCatalogue(const wxXmlDocument &doc)
                                                     // Read the hash.
                                                     wxString content(elLocaleNote->GetNodeContent());
                                                     size_t len = wxHexDecodedSize(content.length());
-                                                    size_t res = wxHexDecode(hash.GetWriteBuf(len), len, content, wxHexDecodeMode_SkipWS);
+                                                    size_t res = wxHexDecode(hash.GetWriteBuf(len), len, content, wxHexDecodeMode::SkipWS);
                                                     if (res != wxCONV_FAILED)
                                                         hash.SetDataLen(res);
                                                     else
@@ -409,7 +409,7 @@ bool wxUpdCheckThread::ReadUpdatePackageMeta()
                 if (m_config.Read(wxT("PackageHash"), &str)) {
                     // Convert to binary.
                     size_t len = wxHexDecodedSize(str.length());
-                    size_t res = wxHexDecode(m_hash.GetWriteBuf(len), len, str, wxHexDecodeMode_SkipWS);
+                    size_t res = wxHexDecode(m_hash.GetWriteBuf(len), len, str, wxHexDecodeMode::SkipWS);
                     if (res != wxCONV_FAILED) {
                         m_hash.SetDataLen(res);
                         return true;
