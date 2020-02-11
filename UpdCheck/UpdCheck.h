@@ -1,5 +1,5 @@
 /*
-    Copyright 2016-2017 Amebis
+    Copyright 2016-2020 Amebis
 
     This file is part of Updater.
 
