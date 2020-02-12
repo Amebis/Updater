@@ -22,13 +22,17 @@
 
 #include "../../../../include/UpdaterCfg.h"
 
-
 //
 // Resource IDs
 //
 #define UPDATER_IDR_KEY_PUBLIC          1
 
 #if !defined(RC_INVOKED) && !defined(MIDL_PASS)
+
+#include <codeanalysis\warnings.h>
+#ifndef WXWIDGETS_CODE_ANALYSIS_WARNINGS
+#define WXWIDGETS_CODE_ANALYSIS_WARNINGS ALL_CODE_ANALYSIS_WARNINGS 26812
+#endif
 
 ///
 /// Public function calling convention

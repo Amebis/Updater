@@ -23,10 +23,13 @@
 
 #include "UpdPublish.h"
 
+#pragma warning(push)
+#pragma warning(disable: WXWIDGETS_CODE_ANALYSIS_WARNINGS)
 #include <wx/app.h>
 #include <wx/base64.h>
 #include <wx/cmdline.h>
 #include <wx/xml/xml.h>
+#pragma warning(pop)
 
 #include <wxex/crypto.h>
 #include <wxex/hex.h>

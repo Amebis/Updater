@@ -21,12 +21,15 @@
 
 #include "../include/Updater/chkthread.h"
 
+#pragma warning(push)
+#pragma warning(disable: WXWIDGETS_CODE_ANALYSIS_WARNINGS)
 #include <wx/base64.h>
 #include <wx/buffer.h>
 #include <wx/filename.h>
 #include <wx/log.h>
 #include <wx/protocol/http.h>
 #include <wx/url.h>
+#pragma warning(pop)
 
 #include <wxex/hex.h>
 #include <wxex/xml.h>

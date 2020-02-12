@@ -21,12 +21,15 @@
 
 #include "common.h"
 
+#pragma warning(push)
+#pragma warning(disable: WXWIDGETS_CODE_ANALYSIS_WARNINGS)
 #include <wx/arrstr.h>
 #include <wx/config.h>
 #include <wx/event.h>
 #include <wx/string.h>
 #include <wx/thread.h>
 #include <wx/xml/xml.h>
+#pragma warning(pop)
 
 #include <wxex/crypto.h>
 
