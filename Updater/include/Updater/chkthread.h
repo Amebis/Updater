@@ -60,7 +60,7 @@ public:
     };
 
     wxUpdCheckThread(const wxString &langId, wxEvtHandler *parent = NULL);
-    virtual ~wxUpdCheckThread();
+    ~wxUpdCheckThread();
 
     ///
     /// Checks for updates and safely downloads update package when available.
@@ -73,7 +73,7 @@ public:
     ///
     /// Aborts current update check
     ///
-    inline void Abort()
+    inline void Abort() noexcept
     {
         m_abort = true;
     }
@@ -84,12 +84,12 @@ protected:
     ///
     /// \returns Exit code
     ///
-    virtual ExitCode Entry();
+    ExitCode Entry() override;
 
     ///
     /// Overrriden method to allow custom termination when Updater is launched in the main thread.
     ///
-    virtual bool TestDestroy();
+    bool TestDestroy() override;
 
     ///
     /// Checks for updates and safely downloads update package when available.

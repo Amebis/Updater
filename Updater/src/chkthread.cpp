@@ -82,7 +82,7 @@ wxThread::ExitCode wxUpdCheckThread::Entry()
         wxQueueEvent(m_parent, e);
     }
 
-    return (wxThread::ExitCode)(static_cast<intptr_t>(result) & 0xffffffff);
+    return reinterpret_cast<wxThread::ExitCode>(static_cast<intptr_t>(result) & 0xffffffff);
 }
 
 
@@ -162,7 +162,7 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             continue;
         }
         wxScopedPtr<wxInputStream> httpStream(http.GetInputStream(wxS(UPDATER_HTTP_PATH)));
-        int status = http.GetResponse();
+        const int status = http.GetResponse();
         if (status == 304) {
             wxLogStatus(_("Repository did not change since the last time."));
             return NULL;
@@ -185,13 +185,13 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             return NULL;
         }
         wxMemoryBuffer buf(4*1024);
-        char *data = (char*)buf.GetData();
-        size_t nBlock = buf.GetBufSize();
+        char *data = static_cast<char*>(buf.GetData());
+        const size_t nBlock = buf.GetBufSize();
         do {
             if (TestDestroy()) return NULL;
 
             httpStream->Read(data, nBlock);
-            size_t nRead = httpStream->LastRead();
+            const size_t nRead = httpStream->LastRead();
             file.Write(data, nRead);
             if (file.Error()) {
                 wxLogError(_("Can not write to %s file."), fileName.c_str());
@@ -218,14 +218,14 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
         for (wxXmlNode *prolog = document->GetChildren(); prolog; prolog = prolog->GetNext()) {
             if (prolog->GetType() == wxXML_COMMENT_NODE) {
                 wxString content = prolog->GetContent();
-                size_t content_len = content.length();
+                const size_t content_len = content.length();
                 if (content_len >= _countof(wxS(UPDATER_SIGNATURE_MARK)) - 1 &&
                     memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1)) == 0)
                 {
                     // Read the signature.
-                    size_t signature_len = content_len - (_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1);
-                    size_t len = wxBase64DecodedSize(signature_len);
-                    size_t res = wxBase64Decode(sig.GetWriteBuf(len), len, content.Right(signature_len), wxBase64DecodeMode_SkipWS);
+                    const size_t signature_len = content_len - (_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1);
+                    const size_t len = wxBase64DecodedSize(signature_len);
+                    const size_t res = wxBase64Decode(sig.GetWriteBuf(len), len, content.Right(signature_len), wxBase64DecodeMode_SkipWS);
                     if (res != wxCONV_FAILED) {
                         sig.SetDataLen(res);
 
@@ -333,8 +333,8 @@ bool wxUpdCheckThread::ParseCatalogue(const wxXmlDocument &doc)
                                                 else if (name == wxT("hash")) {
                                                     // Read the hash.
                                                     wxString content(elLocaleNote->GetNodeContent());
-                                                    size_t len = wxHexDecodedSize(content.length());
-                                                    size_t res = wxHexDecode(hash.GetWriteBuf(len), len, content, wxHexDecodeMode::SkipWS);
+                                                    const size_t len = wxHexDecodedSize(content.length());
+                                                    const size_t res = wxHexDecode(hash.GetWriteBuf(len), len, content, wxHexDecodeMode::SkipWS);
                                                     if (res != wxCONV_FAILED)
                                                         hash.SetDataLen(res);
                                                     else
@@ -408,8 +408,8 @@ bool wxUpdCheckThread::ReadUpdatePackageMeta()
 
                 if (m_config.Read(wxT("PackageHash"), &str)) {
                     // Convert to binary.
-                    size_t len = wxHexDecodedSize(str.length());
-                    size_t res = wxHexDecode(m_hash.GetWriteBuf(len), len, str, wxHexDecodeMode::SkipWS);
+                    const size_t len = wxHexDecodedSize(str.length());
+                    const size_t res = wxHexDecode(m_hash.GetWriteBuf(len), len, str, wxHexDecodeMode::SkipWS);
                     if (res != wxCONV_FAILED) {
                         m_hash.SetDataLen(res);
                         return true;
@@ -481,13 +481,13 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
         // Save update package to file, and calculate hash.
         wxCryptoHashSHA1 ch(*m_cs);
         wxMemoryBuffer buf(4*1024);
-        char *data = (char*)buf.GetData();
-        size_t nBlock = buf.GetBufSize();
+        char *data = static_cast<char*>(buf.GetData());
+        const size_t nBlock = buf.GetBufSize();
         do {
             if (TestDestroy()) return false;
 
             stream->Read(data, nBlock);
-            size_t nRead = stream->LastRead();
+            const size_t nRead = stream->LastRead();
             file.Write(data, nRead);
             if (file.Error()) {
                 wxLogError(_("Can not write to %s file."), m_fileName.c_str());
@@ -530,7 +530,7 @@ bool wxUpdCheckThread::LaunchUpdate(WXHWND hParent, bool headless)
     param += fileNameLog;
     param += wxT("\"");
 
-    intptr_t result = (intptr_t)::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL);
+    const intptr_t result = reinterpret_cast<intptr_t>(::ShellExecute(hParent, NULL, wxT("msiexec.exe"), param, NULL, SW_SHOWNORMAL));
     if (result > 32) {
         wxLogStatus(_("msiexec.exe launch succeeded. For detailed information, see %s file."), fileNameLog.c_str());
         return true;

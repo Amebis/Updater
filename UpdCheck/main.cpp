@@ -59,7 +59,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
         delete wxLog::SetActiveTarget(new wxLogStderr(log_file.fp()));
 
     wxUpdCheckThread worker(lang_ui == wxLANGUAGE_DEFAULT ? wxT("en_US") : wxLocale::GetLanguageCanonicalName(lang_ui));
-    wxUpdCheckThread::wxResult res = worker.CheckForUpdate();
+    const wxUpdCheckThread::wxResult res = worker.CheckForUpdate();
     switch (res) {
     case wxUpdCheckThread::wxResult::UpdateAvailable: return worker.LaunchUpdate(NULL, true) ? 0 : 1;
     case wxUpdCheckThread::wxResult::UpToDate       : return 0;

@@ -29,7 +29,7 @@ HINSTANCE g_hInstance = NULL;
 ///
 /// Main function
 ///
-BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved)
+BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) noexcept
 {
     UNREFERENCED_PARAMETER(lpvReserved);
 
