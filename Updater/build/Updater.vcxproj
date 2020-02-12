@@ -54,11 +54,6 @@
   <ItemGroup>
     <ResourceCompile Include="..\res\Updater.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\wxExtend\build\wxExtendLib-16.0.vcxproj">
-      <Project>{D3E29951-D9F5-486D-A167-20AE8E90B1FA}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{990D8CF9-4457-4DC0-AA18-4968EF434741}</ProjectGuid>
     <RootNamespace>Updater</RootNamespace>
