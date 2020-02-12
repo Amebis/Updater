@@ -32,6 +32,7 @@ wxDEFINE_EVENT(wxEVT_UPDATER_CHECK_COMPLETE, wxThreadEvent);
 
 wxUpdCheckThread::wxUpdCheckThread(const wxString &langId, wxEvtHandler *parent) :
     m_parent(parent),
+    m_ok(true),
     m_abort(false),
     m_langId(langId),
     m_config(wxT(PRODUCT_CFG_APPLICATION) wxT("\\Updater"), wxT(PRODUCT_CFG_VENDOR)),
