@@ -78,7 +78,7 @@ wxThread::ExitCode wxUpdCheckThread::Entry()
         // NOTE: here we assume that using the m_parent pointer is safe,
         //       (in this case this is assured by the wxZRColaCharSelect destructor)
         wxThreadEvent *e = new wxThreadEvent(wxEVT_UPDATER_CHECK_COMPLETE);
-        e->SetInt(result);
+        e->SetInt(static_cast<int>(result));
         wxQueueEvent(m_parent, e);
     }
 
@@ -95,35 +95,35 @@ bool wxUpdCheckThread::TestDestroy()
 wxUpdCheckThread::wxResult wxUpdCheckThread::DoCheckForUpdate()
 {
     if (!m_ok)
-        return wxUpdUninitialized;
+        return wxResult::Uninitialized;
 
     // Download update catalogue.
-    if (TestDestroy()) return wxUpdAborted;
+    if (TestDestroy()) return wxResult::Aborted;
     wxScopedPtr<wxXmlDocument> doc(GetCatalogue());
     if (doc) {
         // Parse the update catalogue to check for an update package availability.
-        if (TestDestroy()) return wxUpdAborted;
+        if (TestDestroy()) return wxResult::Aborted;
         if (ParseCatalogue(*doc)) {
             // Save update package meta-information for the next time.
-            if (TestDestroy()) return wxUpdAborted;
+            if (TestDestroy()) return wxResult::Aborted;
             WriteUpdatePackageMeta();
         } else {
             wxLogStatus(_("Update check complete. Your product is up to date."));
             WriteUpdatePackageMeta();
-            return wxUpdUpToDate;
+            return wxResult::UpToDate;
         }
     } else {
         // Update download catalogue failed, or repository database didn't change. Read a cached version of update package meta-information?
-        if (TestDestroy()) return wxUpdAborted;
+        if (TestDestroy()) return wxResult::Aborted;
         if (!ReadUpdatePackageMeta()) {
             // Reset CatalogueLastModified to force update catalogue download next time.
             m_config.DeleteEntry(wxT("CatalogueLastModified"), false);
-            return wxUpdRepoUnavailable;
+            return wxResult::RepoUnavailable;
         }
 
         if (m_version <= PRODUCT_VERSION) {
             wxLogStatus(_("Update check complete. Your product is up to date."));
-            return wxUpdUpToDate;
+            return wxResult::UpToDate;
         }
     }
 
@@ -132,11 +132,11 @@ wxUpdCheckThread::wxResult wxUpdCheckThread::DoCheckForUpdate()
     m_fileName += m_versionStr;
     m_fileName += wxT(".msi");
 
-    if (TestDestroy()) return wxUpdAborted;
+    if (TestDestroy()) return wxResult::Aborted;
     if (!DownloadUpdatePackage())
-        return wxUpdPkgUnavailable;
+        return wxResult::PkgUnavailable;
 
-    return wxUpdUpdateAvailable;
+    return wxResult::UpdateAvailable;
 }
 
 

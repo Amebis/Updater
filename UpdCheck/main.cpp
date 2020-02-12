@@ -38,6 +38,7 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
 
     // Initialize locale.
     wxLocale locale;
+#pragma warning(suppress: 26812) // wxLanguage is unscoped
     wxLanguage lang_ui;
     if (wxInitializeLocale(locale, &lang_ui)) {
         // Do not add translation catalog, to keep log messages in English.
@@ -60,8 +61,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance, _In
     wxUpdCheckThread worker(lang_ui == wxLANGUAGE_DEFAULT ? wxT("en_US") : wxLocale::GetLanguageCanonicalName(lang_ui));
     wxUpdCheckThread::wxResult res = worker.CheckForUpdate();
     switch (res) {
-    case wxUpdCheckThread::wxUpdUpdateAvailable: return worker.LaunchUpdate(NULL, true) ? 0 : 1;
-    case wxUpdCheckThread::wxUpdUpToDate       : return 0;
-    default                                    : return res;
+    case wxUpdCheckThread::wxResult::UpdateAvailable: return worker.LaunchUpdate(NULL, true) ? 0 : 1;
+    case wxUpdCheckThread::wxResult::UpToDate       : return 0;
+    default                                         : return static_cast<int>(res);
     }
 }

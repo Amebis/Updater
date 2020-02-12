@@ -49,14 +49,14 @@ public:
     ///
     /// Thread exit codes
     ///
-    enum wxResult {
-        wxUpdUninitialized   = -1,  ///< Initialization failed
-        wxUpdAborted         = -2,  ///< Thread aborted
-        wxUpdRepoUnavailable = -3,  ///< No update package information available
-        wxUpdPkgUnavailable  = -4,  ///< Update package not available
+    enum class wxResult {
+        Uninitialized   = -1,  ///< Initialization failed
+        Aborted         = -2,  ///< Thread aborted
+        RepoUnavailable = -3,  ///< No update package information available
+        PkgUnavailable  = -4,  ///< Update package not available
 
-        wxUpdUpdateAvailable =  0,  ///< Update downloaded, verified and prepared to install
-        wxUpdUpToDate,              ///< Product is up-to-date
+        UpdateAvailable =  0,  ///< Update downloaded, verified and prepared to install
+        UpToDate,              ///< Product is up-to-date
     };
 
     wxUpdCheckThread(const wxString &langId, wxEvtHandler *parent = NULL);
