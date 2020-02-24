@@ -37,7 +37,12 @@ All :: "$(LANG).$(PLAT).$(CFG).Component-1.idt"
 Component	ComponentId	Directory_	Attributes	Condition	KeyPath
 s$(MSIBUILD_LENGTH_ID)	S38	s$(MSIBUILD_LENGTH_ID)	i2	S255	S$(MSIBUILD_LENGTH_ID)
 Component	Component
-compUpdCheck.exe.$(PLAT)	{263A3D1A-AC7E-4866-929$(MSIBUILD_PLAT_GUID)-B7C1E6FFF93B}	$(UPDATER_BIN_DIR)	$(MSIBUILD_COMPONENT_ATTRIB_FILE)		fileUpdCheck.exe.$(PLAT)
+!IF "$(PLAT)" == "Win32"
+compUpdCheck.exe.Win32	{0E56A84C-1567-4030-B5C8-2FF998E9F7E3}	$(UPDATER_BIN_DIR)	0		fileUpdCheck.exe.Win32
+!ENDIF
+!IF "$(PLAT)" == "x64"
+compUpdCheck.exe.x64	{9245E7EC-EDBD-41E1-858B-88810F3AFDD6}	$(UPDATER_BIN_DIR)	256		fileUpdCheck.exe.x64
+!ENDIF
 <<NOKEEP
 
 
