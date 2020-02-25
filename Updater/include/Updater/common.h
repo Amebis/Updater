@@ -44,7 +44,8 @@
 //#endif
 #define UPDATER_API
 
-#define UPDATER_SIGNATURE_MARK  "SHA1SIGN:"
+#define UPDATER_SIGNATURE_MARK_SHA1   "SHA1SIGN:"
+#define UPDATER_SIGNATURE_MARK_SHA256 "SIGNATURE:"
 
 #endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)
 #endif // !defined(__UPDATER_common_h__)

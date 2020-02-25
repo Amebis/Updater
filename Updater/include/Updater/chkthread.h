@@ -167,7 +167,7 @@ protected:
     wxUint32 m_version;     ///< Latest product version available (numerical)
     wxString m_versionStr;  ///< Latest product version available (string)
     wxArrayString m_urls;   ///< List of update package file downloads
-    wxMemoryBuffer m_hash;  ///< Update package SHA-1 hash
+    wxMemoryBuffer m_hash;  ///< Update package hash
 
     wxString m_fileName;    ///< Downloaded package file name
 };
