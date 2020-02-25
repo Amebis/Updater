@@ -35,9 +35,9 @@ int _tmain(int argc, _TCHAR *argv[])
     // Parse command line.
     static const wxCmdLineEntryDesc cmdLineDesc[] =
     {
-        { wxCMD_LINE_SWITCH, "h" , "help", _("Show this help message")                               , wxCMD_LINE_VAL_NONE  , wxCMD_LINE_OPTION_HELP      },
-        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("input file" ) + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
-        { wxCMD_LINE_PARAM , NULL, NULL  , wxString(wxT("<")) + _("output file") + wxString(wxT(">")), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_SWITCH, "h" , "help", _("Show this help message"), wxCMD_LINE_VAL_NONE  , wxCMD_LINE_OPTION_HELP      },
+        { wxCMD_LINE_PARAM , NULL, NULL  , _("<input file>"          ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+        { wxCMD_LINE_PARAM , NULL, NULL  , _("<output file>"         ), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
 
         { wxCMD_LINE_NONE }
     };
