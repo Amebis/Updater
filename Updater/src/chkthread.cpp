@@ -220,11 +220,11 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
             if (prolog->GetType() == wxXML_COMMENT_NODE) {
                 wxString content = prolog->GetContent();
                 const size_t content_len = content.length();
-                if (content_len >= _countof(wxS(UPDATER_SIGNATURE_MARK_SHA256)) - 1 &&
-                    memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK_SHA256), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK_SHA256)) - 1)) == 0)
+                if (content_len >= _countof(wxS(UPDATER_SIGNATURE_MARK)) - 1 &&
+                    memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1)) == 0)
                 {
                     // Read the signature.
-                    const size_t signature_len = content_len - (_countof(wxS(UPDATER_SIGNATURE_MARK_SHA256)) - 1);
+                    const size_t signature_len = content_len - (_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1);
                     const size_t len = wxBase64DecodedSize(signature_len);
                     const size_t res = wxBase64Decode(sig.GetWriteBuf(len), len, content.Right(signature_len), wxBase64DecodeMode_SkipWS);
                     if (res != wxCONV_FAILED) {
@@ -247,7 +247,7 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
 
         // Hash the content.
         if (TestDestroy()) return NULL;
-        wxCryptoHashSHA256 ch(*m_cs);
+        wxUpdaterHashChk ch(*m_cs);
         if (!wxXmlHashNode(ch, document))
             continue;
 
@@ -435,7 +435,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
 {
     if (wxFileExists(m_fileName)) {
         // Calculate file hash.
-        wxCryptoHashSHA256 ch(*m_cs);
+        wxUpdaterHashChk ch(*m_cs);
         if (ch.HashFile(m_fileName)) {
             wxMemoryBuffer buf;
             ch.GetValue(buf);
@@ -480,7 +480,7 @@ bool wxUpdCheckThread::DownloadUpdatePackage()
         }
 
         // Save update package to file, and calculate hash.
-        wxCryptoHashSHA256 ch(*m_cs);
+        wxUpdaterHashChk ch(*m_cs);
         wxMemoryBuffer buf(4*1024);
         char *data = static_cast<char*>(buf.GetData());
         const size_t nBlock = buf.GetBufSize();

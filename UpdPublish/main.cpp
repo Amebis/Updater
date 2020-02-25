@@ -171,8 +171,8 @@ int _tmain(int argc, _TCHAR *argv[])
         wxCryptoSessionRSAAES cs;
         wxCHECK(cs.IsOk(), -1);
 
-        // Calculate file SHA-1 hash.
-        wxCryptoHashSHA1 ch(cs);
+        // Calculate file hash.
+        wxUpdaterHashGen ch(cs);
         wxCHECK(ch.HashFile(filenamePckg), 3);
         ch.GetValue(hash);
     }
@@ -288,7 +288,6 @@ int _tmain(int argc, _TCHAR *argv[])
         UpdaterAddPackage(elPackages, platformId, languageId, url, hash);
         url_present = true;
     }
-
 
     // Write output XML document.
     const wxString& filenameOut = parser.GetParam(1);

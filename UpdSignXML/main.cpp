@@ -67,8 +67,8 @@ int _tmain(int argc, _TCHAR *argv[])
     for (wxXmlNode *prolog = document->GetChildren(); prolog;) {
         if (prolog->GetType() == wxXML_COMMENT_NODE) {
             wxString content = prolog->GetContent();
-            if (content.length() >= _countof(wxS(UPDATER_SIGNATURE_MARK_SHA1)) - 1 &&
-                memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK_SHA1), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK_SHA1)) - 1)) == 0)
+            if (content.length() >= _countof(wxS(UPDATER_SIGNATURE_MARK)) - 1 &&
+                memcmp((const wxStringCharType*)content, wxS(UPDATER_SIGNATURE_MARK), sizeof(wxStringCharType)*(_countof(wxS(UPDATER_SIGNATURE_MARK)) - 1)) == 0)
             {
                 // Previous signature found. Remove it.
                 wxXmlNode *signature = prolog;
@@ -100,7 +100,7 @@ int _tmain(int argc, _TCHAR *argv[])
     }
 
     // Hash the XML content.
-    wxCryptoHashSHA1 ch(cs);
+    wxUpdaterHashGen ch(cs);
     if (!wxXmlHashNode(ch, document))
         return 2;
 
@@ -111,7 +111,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
     // Encode signature (Base64) and append to the document prolog.
     wxString signature;
-    signature += wxS(UPDATER_SIGNATURE_MARK_SHA1);
+    signature += wxS(UPDATER_SIGNATURE_MARK);
     signature += wxBase64Encode(sig);
     document->AddChild(new wxXmlNode(wxXML_COMMENT_NODE, wxS(""), signature));
 
