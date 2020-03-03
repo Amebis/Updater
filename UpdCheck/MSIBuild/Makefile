@@ -36,7 +36,6 @@ MSIBUILD_IS_LOCALIZEABLE=1
 All :: "$(LANG).$(PLAT).$(CFG).Component-1.idt"
 
 "$(LANG).$(PLAT).$(CFG).Component-1.idt" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
-	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Component	ComponentId	Directory_	Attributes	Condition	KeyPath
 s$(MSIBUILD_LENGTH_ID)	S38	s$(MSIBUILD_LENGTH_ID)	i2	S255	S$(MSIBUILD_LENGTH_ID)
@@ -51,7 +50,6 @@ compUpdCheck.exe.$(PLAT)	{263A3D1A-AC7E-4866-929$(MSIBUILD_PLAT_GUID)-B7C1E6FFF9
 All :: "$(LANG).$(PLAT).$(CFG).Feature-2.idt"
 
 "en_US.$(PLAT).$(CFG).Feature-2.idtx" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
-	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Feature	Feature_Parent	Title	Description	Display	Level	Directory_	Attributes
 s$(MSIBUILD_LENGTH_ID)	S$(MSIBUILD_LENGTH_ID)	L64	L255	I2	i2	S$(MSIBUILD_LENGTH_ID)	i2
@@ -74,7 +72,6 @@ featUpdCheck	$(UPDATER_FEATURE_ROOT)	Automatic Updating	Task for background prod
 All :: "$(LANG).$(PLAT).$(CFG).FeatureComponents-1.idt"
 
 "$(LANG).$(PLAT).$(CFG).FeatureComponents-1.idt" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
-	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Feature_	Component_
 s38	s$(MSIBUILD_LENGTH_ID)
@@ -89,7 +86,6 @@ featUpdCheck	compUpdCheck.exe.$(PLAT)
 All :: "$(LANG).$(PLAT).$(CFG).File-1.idt"
 
 "$(LANG).$(PLAT).$(CFG).File-1.idt" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
-	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 File	Component_	FileName	FileSize	Version	Language	Attributes	Sequence
 s$(MSIBUILD_LENGTH_ID)	s$(MSIBUILD_LENGTH_ID)	l255	i4	S$(MSIBUILD_LENGTH_ID)	S20	I2	i2
@@ -104,7 +100,6 @@ fileUpdCheck.exe.$(PLAT)	compUpdCheck.exe.$(PLAT)	UPDCHECK.EXE|UpdCheck.exe	0		0
 All :: "$(LANG).$(PLAT).$(CFG).ScheduledTask-2.idt"
 
 "en_US.$(PLAT).$(CFG).ScheduledTask-2.idtx" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
-	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Task	DisplayName	Application	Parameters	Directory_	Flags	Priority	User	Password	Author	Description	IdleMin	IdleDeadline	MaxRuntime	Condition	Component_
 s$(MSIBUILD_LENGTH_ID)	l255	s255	S255	s$(MSIBUILD_LENGTH_ID)	i4	i4	S255	S255	L255	L0	I2	I2	i4	S255	s$(MSIBUILD_LENGTH_ID)
@@ -127,7 +122,6 @@ stUpdCheck.$(PLAT)	[SimpleProductName] Update	[#fileUpdCheck.exe.$(PLAT)]		$(UPD
 All :: "$(LANG).$(PLAT).$(CFG).TaskTrigger-1.idt"
 
 "$(LANG).$(PLAT).$(CFG).TaskTrigger-1.idt" : "Makefile" "..\..\..\include\MSIBuildCfg.mak"
-	-if exist $@ del /f /q $@
 	move /y << $@ > NUL
 Trigger	BeginDate	EndDate	StartTime	StartTimeRand	MinutesDuration	MinutesInterval	Flags	Type	DaysInterval	WeeksInterval	DaysOfTheWeek	DaysOfMonth	WeekOfMonth	MonthsOfYear	Task_
 s$(MSIBUILD_LENGTH_ID)	i2	I2	i2	I2	I4	I4	i4	i2	I2	I2	I2	I4	I2	I2	s$(MSIBUILD_LENGTH_ID)
