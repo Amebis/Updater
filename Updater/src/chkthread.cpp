@@ -311,8 +311,10 @@ bool wxUpdCheckThread::ParseCatalogue(const wxXmlDocument &doc)
 #if defined(__WINDOWS__)
             platformId += wxT("win");
 #endif
-#if defined(_WIN64)
+#if defined(_M_AMD64)
             platformId += wxT("-amd64");
+#elif defined(_M_ARM64)
+            platformId += wxT("-arm64");
 #else
             platformId += wxT("-x86");
 #endif
