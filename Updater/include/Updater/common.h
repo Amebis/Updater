@@ -34,16 +34,6 @@
 #define WXWIDGETS_CODE_ANALYSIS_WARNINGS ALL_CODE_ANALYSIS_WARNINGS 26812 26814
 #endif
 
-///
-/// Public function calling convention
-///
-//#ifdef UPDATER
-//#define UPDATER_API    __declspec(dllexport)
-//#else
-//#define UPDATER_API    __declspec(dllimport)
-//#endif
-#define UPDATER_API
-
 #define UPDATER_SIGNATURE_MARK "SIGNATURE:"
 
 #endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)

@@ -37,13 +37,13 @@
 ///
 /// wxEVT_UPDATER_CHECK_COMPLETE event
 ///
-wxDECLARE_EXPORTED_EVENT(UPDATER_API, wxEVT_UPDATER_CHECK_COMPLETE, wxThreadEvent);
+wxDECLARE_EVENT(wxEVT_UPDATER_CHECK_COMPLETE, wxThreadEvent);
 
 
 ///
 /// Update check thread
 ///
-class UPDATER_API wxUpdCheckThread : public wxThread
+class wxUpdCheckThread : public wxThread
 {
 public:
     ///
