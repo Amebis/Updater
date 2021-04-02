@@ -90,13 +90,21 @@ int _tmain(int argc, _TCHAR *argv[])
     // Import the private key into the session from resources.
     {
         HRSRC res = ::FindResource(NULL, MAKEINTRESOURCE(IDR_KEY_PRIVATE), RT_RCDATA);
-        wxASSERT_MSG(res, wxT("private key not found"));
+        if (!res) {
+            wxLogError(wxT("%s: error USX0005: Error locating private key.\n"));
+            return -1;
+        }
         HGLOBAL res_handle = ::LoadResource(NULL, res);
-        wxASSERT_MSG(res_handle, wxT("loading resource failed"));
+        if (!res_handle) {
+            wxLogError(wxT("%s: error USX0006: Error loading private key.\n"));
+            return -1;
+        }
 
         wxCryptoKey ck;
-        if (!ck.ImportPrivate(cs, ::LockResource(res_handle), ::SizeofResource(NULL, res)))
+        if (!ck.ImportPrivate(cs, ::LockResource(res_handle), ::SizeofResource(NULL, res))) {
+            wxLogError(wxT("%s: error USX0007: Error importing private key.\n"));
             return -1;
+        }
     }
 
     // Hash the XML content.
