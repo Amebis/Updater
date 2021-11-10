@@ -65,6 +65,7 @@ int _tmain(int argc, _TCHAR *argv[])
     // Examine prologue if the document is already signed and remove all signatures found.
     wxXmlNode *document = doc.GetDocumentNode();
     for (wxXmlNode *prolog = document->GetChildren(); prolog;) {
+        #pragma warning(suppress: 26812) // wxXmlNodeType is unscoped
         if (prolog->GetType() == wxXML_COMMENT_NODE) {
             wxString content = prolog->GetContent();
             if (content.length() >= _countof(wxS(UPDATER_SIGNATURE_MARK)) - 1 &&

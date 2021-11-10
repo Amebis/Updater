@@ -217,6 +217,7 @@ wxXmlDocument* wxUpdCheckThread::GetCatalogue()
         wxXmlNode *document = doc->GetDocumentNode();
         wxMemoryBuffer sig;
         for (wxXmlNode *prolog = document->GetChildren(); prolog; prolog = prolog->GetNext()) {
+            #pragma warning(suppress: 26812) // wxXmlNodeType is unscoped.
             if (prolog->GetType() == wxXML_COMMENT_NODE) {
                 wxString content = prolog->GetContent();
                 const size_t content_len = content.length();

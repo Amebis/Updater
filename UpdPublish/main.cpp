@@ -184,6 +184,7 @@ int _tmain(int argc, _TCHAR *argv[])
     const wxString& url = parser.GetParam(4);
     wxString languageId(language);
     for (wxXmlNode *elPackage = elPackages->GetChildren(); elPackage; elPackage = elPackage->GetNext()) {
+        #pragma warning(suppress: 26812) // wxXmlNodeType is unscoped
         if (elPackage->GetType() == wxXML_ELEMENT_NODE && elPackage->GetName() == wxT("Package")) {
             // Get package version.
             wxUint32 version = 0;
