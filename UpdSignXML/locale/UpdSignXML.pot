@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: UpdSignXML\n"
-"POT-Creation-Date: 2020-02-25 11:28+0100\n"
+"POT-Creation-Date: 2022-02-17 13:29+0100\n"
 "PO-Revision-Date: 2018-09-19 10:49+0200\n"
 "Last-Translator: Simon Rozman <simon.rozman@amebis.si>\n"
 "Language-Team: Amebis, d. o. o., Kamnik <info@amebis.si>\n"
@@ -10,21 +10,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: main.cpp:38
+#: main.cpp:24
 msgid "Show this help message"
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:25
 msgid "<input file>"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:26
 msgid "<output file>"
 msgstr ""
