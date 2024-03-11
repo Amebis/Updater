@@ -7,5 +7,5 @@
 
 #define IDR_KEY_PUBLIC  1
 
-#if !defined(RC_INVOKED) && !defined(MIDL_PASS)
-#endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)
+#if !defined(RC_INVOKED) && !defined(__midl)
+#endif // !defined(RC_INVOKED) && !defined(__midl)

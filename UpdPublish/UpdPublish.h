@@ -5,5 +5,5 @@
 
 #pragma once
 
-#if !defined(RC_INVOKED) && !defined(MIDL_PASS)
-#endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)
+#if !defined(RC_INVOKED) && !defined(__midl)
+#endif // !defined(RC_INVOKED) && !defined(__midl)

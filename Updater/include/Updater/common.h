@@ -13,7 +13,7 @@
 //
 #define UPDATER_IDR_KEY_PUBLIC          1
 
-#if !defined(RC_INVOKED) && !defined(MIDL_PASS)
+#if !defined(RC_INVOKED) && !defined(__midl)
 
 #include <codeanalysis\warnings.h>
 #ifndef WXWIDGETS_CODE_ANALYSIS_WARNINGS
@@ -22,5 +22,5 @@
 
 #define UPDATER_SIGNATURE_MARK "SIGNATURE:"
 
-#endif // !defined(RC_INVOKED) && !defined(MIDL_PASS)
+#endif // !defined(RC_INVOKED) && !defined(__midl)
 #endif // !defined(__UPDATER_common_h__)
